@@ -1,73 +1,102 @@
 import React, { Fragment, useState } from "react";
+import { emailValidator } from "../../helpers/regexValidator";
 import "./SignIn.css";
+import { NavLink } from "react-router-dom";
 
 const SignIn = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
-  const [emailIsValid, setEmailIsValid] = useState();
+  const [emailIsValid, setEmailIsValid] = useState(true);
   const [enteredPassword, setEnteredPassword] = useState("");
-  const [passwordIsValid, setPasswordIsValid] = useState();
-  const [formIsValid, setFormIsValid] = useState(false);
-  const [showBtn, setShowBtn] = useState("");
-  const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
 
-    setFormIsValid(
-      event.target.value.includes("@") && enteredPassword.trim().length > 6
-    );
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
+
+  //E-mail validation
+  const emailHandler = (event) => {
+    setEnteredEmail(event.target.value.trim());
+    !emailValidator.test(enteredEmail)
+      ? setEmailIsValid(false)
+      : setEmailIsValid(true);
   };
 
-  const passwordChangeHandler = (event) => {
-    setEnteredPassword(event.target.value);
+  //Password log in validation
+  function passHandler(e) {
+    const item = e.target.value.trim();
+    setEnteredPassword(item);
+    if (item.length < 1) {
+      setPasswordIsValid(false);
+    } else {
+      setPasswordIsValid(true);
+    }
+  }
 
-    setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes("@")
-    );
-  };
+  //Change page to SignUP
 
-  const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes("@"));
-  };
-  const validatePasswordHandler = () => {
-    setPasswordIsValid(enteredPassword.trim().length > 6);
-  };
+  function signUpHandler(e) {
+    e.preventDefault();
+    document.location.replace("/signup");
+  }
 
-  const submitHandler = (event) => {
+  const logInHandler = async function (event) {
     event.preventDefault();
-    props.onLogin(enteredEmail, enteredPassword);
+    if (
+      emailIsValid &&
+      passwordIsValid &&
+      enteredEmail !== "" &&
+      enteredPassword !== ""
+    ) {
+      const response = await fetch("/api/users/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email: enteredEmail,
+          password: enteredPassword,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        document.location.replace("/home");
+        console.log(response);
+      } else {
+        alert("Email or Password is incorrect");
+      }
+    } else {
+      alert("Please check input fields again");
+    }
   };
-  const SignUpHandler = (event) => {
-    event.preventDefault();
-    // setSignUp("");
-  };
+
   return (
     <Fragment>
-      
-      <form className="sign-in__form" onSubmit={submitHandler}>
+      <form className="sign-in__form" onSubmit={logInHandler}>
         <label>Email</label>
         <input
           className="userEmailInput"
           type="email"
-          value={enteredEmail}
-          onChange={emailChangeHandler}
-          onBlur={validateEmailHandler}
-          placeholder="Enter email"
+          onChange={emailHandler}
+          placeholder="example@example.com"
         ></input>
         <label>Password</label>
         <input
           className="userPwInput"
           type="password"
-          value={enteredPassword}
-          onChange={passwordChangeHandler}
-          onBlur={validatePasswordHandler}
-          placeholder="Enter Password"
+          onChange={passHandler}
+          placeholder="Enter your password"
         ></input>
-        <p className="Message"></p>
-        <p className="Message"></p>
-        <button className={showBtn} type="submit">
+        {!passwordIsValid ? (
+          <p>The password input field cannot be empty </p>
+        ) : (
+          ""
+        )}
+
+        {!emailIsValid ? (
+          <p>Wrong format for e-mail address (example: example@email.com)</p>
+        ) : (
+          ""
+        )}
+        <button className="sign-in__form--btn" type="submit">
           Login{" "}
         </button>
-        <button className="" type="button">
-          SignUp{" "}
+        <button className="sign-in__form--btn" onClick={signUpHandler}>
+          SignUp
         </button>
       </form>
     </Fragment>
