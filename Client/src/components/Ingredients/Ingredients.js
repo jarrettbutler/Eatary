@@ -1,88 +1,111 @@
 import { Fragment } from "react";
 import "./../../styles/main.scss";
+import ErrorMessage from "./ErrorMessage";
+import WeclomeMessage from "./WelcomeMessage";
 
 const Ingredients = (props) => {
   return (
     <Fragment>
-      <div className="recipe">
-        <div className="message">
-          <div>
+      <div className="recipe ">
+        <ErrorMessage />
+        <WeclomeMessage />
+        <figure className="recipe__fig">
+          <img src="" alt="Tomato" className="recipe__img" />
+          <h1 className="recipe__title">
+            <span>Pasta with tomato cream sauce</span>
+          </h1>
+        </figure>
+
+        <div className="recipe__details">
+          <div className="recipe__info">
+            <svg className="recipe__info-icon">
+              <use href=""></use>
+            </svg>
+            <span className="recipe__info-data recipe__info-data--minutes">
+              45
+            </span>
+            <span className="recipe__info-text">minutes</span>
+          </div>
+          <div className="recipe__info">
+            <svg className="recipe__info-icon">
+              <use href=""></use>
+            </svg>
+            <span className="recipe__info-data recipe__info-data--people">
+              4
+            </span>
+            <span className="recipe__info-text">servings</span>
+
+            <div className="recipe__info-buttons">
+              <button className="btn--tiny btn--increase-servings">
+                <svg>
+                  <use href=""></use>
+                </svg>
+              </button>
+              <button className="btn--tiny btn--increase-servings">
+                <svg>
+                  <use href=""></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div className="recipe__user-generated">
             <svg>
               <use href=""></use>
             </svg>
           </div>
-          <p>Start by searching for a recipe or an ingredient. Have fun!</p>
-        </div>
-      </div>
-
-      <div className="overlay hidden"></div>
-      <div className="add-recipe-window hidden">
-        <button className="btn--close-modal">&times;</button>
-        <form className="upload">
-          <div className="upload__column">
-            <h3 className="upload__heading">Recipe data</h3>
-            <label>Title</label>
-            <input required name="title" type="text" />
-            <label>URL</label>
-            <input required name="sourceUrl" type="text" />
-            <label>Image URL</label>
-            <input required name="image" type="text" />
-            <label>Publisher</label>
-            <input required name="publisher" type="text" />
-            <label>Prep time</label>
-            <input required name="cookingTime" type="number" />
-            <label>Servings</label>
-            <input required name="servings" type="number" />
-          </div>
-
-          <div className="upload__column">
-            <h3 className="upload__heading">Ingredients</h3>
-            <label>Ingredient 1</label>
-            <input
-              type="text"
-              required
-              name="ingredient-1"
-              placeholder="Format: 'Quantity,Unit,Description'"
-            />
-            <label>Ingredient 2</label>
-            <input
-              type="text"
-              name="ingredient-2"
-              placeholder="Format: 'Quantity,Unit,Description'"
-            />
-            <label>Ingredient 3</label>
-            <input
-              type="text"
-              name="ingredient-3"
-              placeholder="Format: 'Quantity,Unit,Description'"
-            />
-            <label>Ingredient 4</label>
-            <input
-              type="text"
-              name="ingredient-4"
-              placeholder="Format: 'Quantity,Unit,Description'"
-            />
-            <label>Ingredient 5</label>
-            <input
-              type="text"
-              name="ingredient-5"
-              placeholder="Format: 'Quantity,Unit,Description'"
-            />
-            <label>Ingredient 6</label>
-            <input
-              type="text"
-              name="ingredient-6"
-              placeholder="Format: 'Quantity,Unit,Description'"
-            />
-          </div>
-
-          <button className="btn upload__btn">
-            <svg>
+          <button className="btn--round">
+            <svg className="">
               <use href=""></use>
             </svg>
-            <span>Upload</span>
           </button>
-        </form>
+        </div>
+
+        <div className="recipe__ingredients">
+          <h2 className="heading--2">Recipe ingredients</h2>
+          <ul className="recipe__ingredient-list">
+            <li className="recipe__ingredient">
+              <svg className="recipe__icon">
+                <use href=""></use>
+              </svg>
+              <div className="recipe__quantity">1000</div>
+              <div className="recipe__description">
+                <span className="recipe__unit">g</span>
+                pasta
+              </div>
+            </li>
+
+            <li className="recipe__ingredient">
+              <svg className="recipe__icon">
+                <use href=""></use>
+              </svg>
+              <div className="recipe__quantity">0.5</div>
+              <div className="recipe__description">
+                <span className="recipe__unit">cup</span>
+                ricotta cheese
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div className="recipe__directions">
+          <h2 className="heading--2">How to cook it</h2>
+          <p className="recipe__directions-text">
+            This recipe was carefully designed and tested by
+            <span className="recipe__publisher">The Pioneer Woman</span>. Please
+            check out directions at their website.
+          </p>
+          <a
+            className="btn--small recipe__btn"
+            href="http://thepioneerwoman.com/cooking/pasta-with-tomato-cream-sauce/"
+            target="_blank"
+          >
+            <span>Directions</span>
+            <svg className="search__icon">
+              <use href=""></use>
+            </svg>
+          </a>
+        </div>
       </div>
     </Fragment>
   );
