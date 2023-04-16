@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="header">
       <img src="" alt="Logo" className="header__logo" />
-      <form className="search" readOnly>
+      <form className="search">
         <input
           type="text"
           className="search__field"

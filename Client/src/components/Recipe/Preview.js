@@ -1,5 +1,5 @@
 import SingleRecipe from "./SingleRecipe";
-import "./Preview.css";
+import "./../../styles/main.scss";
 
 function Preview() {
   return (

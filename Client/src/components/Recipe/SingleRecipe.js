@@ -1,4 +1,4 @@
-import "./SingleRecipe.css";
+import "./../../styles/main.scss";
 
 function SingleRecipe() {
   return (
