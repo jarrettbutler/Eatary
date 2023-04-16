@@ -1,21 +1,19 @@
-form {
-    border-radius: 10px;
-    margin-top: 7%;
-    margin-left: 40%;
-    padding: 3%;
-    background-color: rgb(237, 234, 234);
-    width: 15rem;
-    display: flex;
-    flex-direction: column;
-    color: rgb(21, 21, 22);
-    opacity: 70%;
-    border: 3px solid white;
-    }
-    Input{
-        border-radius: 2px;
-    
-    }
-    button{
-        margin-top:0.3rem
-    }
-   
+.sign-in__form {
+  border-radius: 10px;
+  margin-top: 7%;
+  margin-left: 40%;
+  padding: 3%;
+  background-color: rgb(237, 234, 234);
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  color: rgb(21, 21, 22);
+  opacity: 70%;
+  border: 3px solid white;
+}
+.sign-in__form input {
+  border-radius: 2px;
+}
+.sign-in__form button {
+  margin-top: 0.3rem;
+}
