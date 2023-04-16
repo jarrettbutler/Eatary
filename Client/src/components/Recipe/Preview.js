@@ -3,8 +3,8 @@ import "./Preview.css";
 
 function Preview() {
   return (
-    <div class="search-results">
-      <ul class="results">
+    <div className="search-results">
+      <ul className="results">
         <SingleRecipe />
       </ul>
     </div>

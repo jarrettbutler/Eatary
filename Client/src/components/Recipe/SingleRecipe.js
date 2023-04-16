@@ -2,17 +2,17 @@ import "./SingleRecipe.css";
 
 function SingleRecipe() {
   return (
-    <li class="preview">
-      <a class="preview__link preview__link--active" href="#23456">
-        <figure class="preview__fig">
-          <img src="src/img/favicon.png" alt="Test" />
+    <li className="preview">
+      <a className="preview__link preview__link--active" href="#23456">
+        <figure className="preview__fig">
+          <img src="" alt="Test" />
         </figure>
-        <div class="preview__data">
-          <h4 class="preview__title">Pasta with Tomato Cream ...</h4>
-          <p class="preview__publisher">The Pioneer Woman</p>
-          <div class="preview__user-generated">
+        <div className="preview__data">
+          <h4 className="preview__title">Pasta with Tomato Cream ...</h4>
+          <p className="preview__publisher">The Pioneer Woman</p>
+          <div className="preview__user-generated">
             <svg>
-              <use href="src/img/icons.svg#icon-user"></use>
+              <use href=""></use>
             </svg>
           </div>
         </div>
