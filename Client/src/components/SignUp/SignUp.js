@@ -3,11 +3,12 @@ import "./SignUp.css";
 
 const SignUp = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredUserName, setUserName] = useState("");
   const [emailIsValid, setEmailIsValid] = useState();
   const [enteredPassword, setEnteredPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
-  const [signUp, setSignUp] = useState("hidden");
+ 
   const [showBtn, setShowBtn] = useState("");
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -42,9 +43,12 @@ const SignUp = (props) => {
       <form className="sign-up__form" onSubmit={submitHandler}>
         <label>User Name</label>
         <input
-          className={signUp}
-          type="text"
-          placeholder="Enter you name"
+         className="userEmailInput"
+         type="email"
+         value={enteredUserName}
+         onChange={emailChangeHandler}
+         onBlur={validateEmailHandler}
+         placeholder="Enter User Name"
         ></input>
         <label>Email</label>
         <input
@@ -64,8 +68,9 @@ const SignUp = (props) => {
           onBlur={validatePasswordHandler}
           placeholder="Enter Password"
         ></input>{" "}
-        g
-        <button className={signUp} type="button">
+        <p></p>
+        <p></p>
+        <button  type="button">
           SignUp{" "}
         </button>
       </form>
