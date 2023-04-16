@@ -1,4 +1,5 @@
 import "./../../styles/main.scss";
+
 const Navigation = () => {
   return (
     <nav className="nav">
