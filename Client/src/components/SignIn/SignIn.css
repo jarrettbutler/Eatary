@@ -1,19 +1,46 @@
 .sign-in__form {
   border-radius: 10px;
-  margin-top: 7%;
+  margin-top: 15%;
   margin-left: 40%;
-  padding: 3%;
+ ;
   background-color: rgb(237, 234, 234);
-  width: 15rem;
+  width: 30rem;
+  height: 33rem;
   display: flex;
   flex-direction: column;
   color: rgb(21, 21, 22);
   opacity: 70%;
   border: 3px solid white;
+  padding: 10px;
+  font-size: 1rem;
 }
 .sign-in__form input {
-  border-radius: 2px;
+  border-radius: 15px;
+  padding: 5px;
+  width: 27rem;
+  height: 3rem;
+  margin: 10px;
+  margin-left: 4px;
+  
 }
 .sign-in__form button {
-  margin-top: 0.3rem;
+  margin-top: 1.2rem;
+  height: 3rem;
+  border-radius: 15px ;
+}
+.sign-in__form label {
+  font-size: 2rem;
+  margin-left: 10px;
+}
+.Message {
+  min-height: 2rem;
+}
+
+@media  (max-width: 1200px) {
+  .sign-in__form{
+    margin-left: 20%
+  }
+
+
+  
 }

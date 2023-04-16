@@ -41,6 +41,7 @@ const SignIn = (props) => {
   };
   return (
     <Fragment>
+      
       <form className="sign-in__form" onSubmit={submitHandler}>
         <label>Email</label>
         <input
@@ -60,6 +61,8 @@ const SignIn = (props) => {
           onBlur={validatePasswordHandler}
           placeholder="Enter Password"
         ></input>
+        <p className="Message"></p>
+        <p className="Message"></p>
         <button className={showBtn} type="submit">
           Login{" "}
         </button>
