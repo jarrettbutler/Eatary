@@ -1,6 +1,9 @@
 import "./../../styles/main.scss";
+import AddRecipe from "../AddRecipe/AddRecipe";
+import { useState } from "react";
+const Navigation = (props) => {
 
-const Navigation = () => {
+  const [showAddRecipe, setAddRecipe]=useState(null)
   const logOutHandler = async function () {
     const response = await fetch("/api/users/logout", {
       method: "PUT",
@@ -14,11 +17,17 @@ const Navigation = () => {
       alert("Failed to log out");
     }
   };
+  const AddRecipeHandler=()=>{
+   setAddRecipe(1)
+  }
+  const HideAddRecipe=()=>{
+    setAddRecipe(null)
+  }
   return (
     <nav className="nav">
       <ul className="nav__list">
         <li className="nav__item">
-          <button className="nav__btn nav__btn--add-recipe">
+          <button className="nav__btn nav__btn--add-recipe" onClick={AddRecipeHandler}>
             <svg className="nav__icon">
               <use href=""></use>
             </svg>
@@ -57,6 +66,7 @@ const Navigation = () => {
           </button>
         </li>
       </ul>
+      {showAddRecipe ?<AddRecipe hide={HideAddRecipe}/>:""}
     </nav>
   );
 };

@@ -5,7 +5,7 @@
 
 
 
- const AddRecipe =()=>{
+ const AddRecipe =(props)=>{
     const[title, setEntEredTitle]=useState('')
         const[sourceUrl, setEnteredUrl]=useState('')
         const[image, setEnteredImUrl]=useState('')
@@ -60,14 +60,18 @@
     setEnteredIng5('')
     setEnteredIng6('')
     alert("Your recipe has been successfully added")
+    props.hide()
      }
+    }
+    const closeWindow=()=>{
+        props.hide()  
     }
 
     return (
         <Fragment>
         <div className="overlay "></div>
         <div className="add-recipe-window ">
-          <button className="btn--close-modal">&times;</button>
+          <button  onClick ={closeWindow} className="btn--close-modal">&times;</button>
           <form className="upload">
             <div className="upload__column">
               <h3 className="upload__heading">Recipe data</h3>
