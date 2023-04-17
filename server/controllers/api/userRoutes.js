@@ -55,6 +55,7 @@ router.post("/", async (req, res) => {
         .json({ message: "Incorrect email or password, please try again" });
       return;
     }
+    console.log(userData);
 
     const validPassword = await userData.checkPassword(req.body.password);
 
@@ -70,7 +71,7 @@ router.post("/", async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.imail = userData.email;
-      res.session.name = userData.name;
+
       req.session.logged_in = true;
 
       res.json({
@@ -80,7 +81,7 @@ router.post("/", async (req, res) => {
       });
     });
 
-    res.json(userData);
+    // res.json(userData);
   } catch (err) {
     res.status(400).json(err);
   }
