@@ -1,6 +1,19 @@
 import "./../../styles/main.scss";
 
 const Navigation = () => {
+  const logOutHandler = async function () {
+    const response = await fetch("/api/users/logout", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      document.location.replace("/");
+      alert("logged out!");
+    } else {
+      alert("Failed to log out");
+    }
+  };
   return (
     <nav className="nav">
       <ul className="nav__list">
@@ -33,7 +46,10 @@ const Navigation = () => {
           </div>
         </li>
         <li className="nav__item">
-          <button className="nav__btn nav__btn--add-recipe">
+          <button
+            onClick={logOutHandler}
+            className="nav__btn nav__btn--add-recipe"
+          >
             <svg className="nav__icon">
               <use href=""></use>
             </svg>

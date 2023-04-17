@@ -43,7 +43,7 @@ const SignUp = (props) => {
   //Change page to SingIN
   function signInHandler(e) {
     e.preventDefault();
-    document.location.replace("/login");
+    document.location.replace("/");
   }
 
   const sigUpHandler = async function (event) {
