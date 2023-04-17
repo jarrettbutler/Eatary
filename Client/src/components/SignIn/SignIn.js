@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { emailValidator } from "../../helpers/regexValidator";
 import "./SignIn.css";
-import { NavLink } from "react-router-dom";
 
 const SignIn = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
