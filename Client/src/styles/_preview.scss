@@ -1,18 +1,18 @@
 .preview {
   &__link {
-    &:link,
-    &:visited {
+    &__div {
       display: flex;
       align-items: center;
       padding: 1.5rem 3.25rem;
       transition: all 0.3s;
       border-right: 1px solid #fff;
       text-decoration: none;
-    }
+      cursor: pointer;
 
-    &:hover {
-      background-color: $color-grey-light-1;
-      transform: translateY(-2px);
+      &:hover {
+        background-color: $color-grey-light-1;
+        transform: translateY(-2px);
+      }
     }
 
     &--active {
@@ -37,11 +37,9 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
+      background-image: linear-gradient(to right bottom,
+          $color-grad-1,
+          $color-grad-2 );
       opacity: 0.4;
     }
 

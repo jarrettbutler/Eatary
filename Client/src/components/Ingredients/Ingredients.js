@@ -1,9 +1,26 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import "./../../styles/main.scss";
 import ErrorMessage from "./ErrorMessage";
 import WeclomeMessage from "./WelcomeMessage";
 
 const Ingredients = (props) => {
+
+  const [att, setAtt] = useState('');
+  const [recipeData, setRecipeData] = useState('');
+  console.log(props.attRes);
+
+useEffect(() => {
+  attRes();
+}, [att]);
+
+  const attRes = async () => {
+    const Result = await fetch(`/api/recipes/${props.attRes}`);
+    const JsonResult = await Result.json();
+    setRecipeData(JsonResult)
+    setAtt(props.attRes)
+    console.log(recipeData);
+  }
+
   return (
     <Fragment>
       <div className="recipe ">

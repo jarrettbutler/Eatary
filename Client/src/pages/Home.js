@@ -6,14 +6,14 @@ import { useState } from "react";
 
 function Home() {
 
-const [search, setSearchRes] = useState()
-console.log(search);
+const [search, setSearchRes] = useState();
+const [att, setAtt] = useState();
 
   return (
     <div className="container">
       <Header setSearchRes = {setSearchRes}/>
-      <Preview searchRes = {search}/>
-      <Ingredients />
+      <Preview searchRes = {search} setAtt = {setAtt}/>
+      <Ingredients attRes = {att}/>
     </div>
   );
 }

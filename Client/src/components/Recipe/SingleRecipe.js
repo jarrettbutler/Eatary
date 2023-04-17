@@ -2,10 +2,9 @@ import "./../../styles/main.scss";
 
 function SingleRecipe(props) {
   const recipe = props.recipeRes
-  console.log(recipe);
   return (
-    <li className="preview">
-      <a className="preview__link preview__link--active" href="#23456">
+    <li className="preview" id={recipe.id}>
+      <div className="preview__link__div preview__link__div--active">
         <figure className="preview__fig">
           <img src={recipe.image} alt="Test" />
         </figure>
@@ -18,7 +17,7 @@ function SingleRecipe(props) {
             </svg>
           </div>
         </div>
-      </a>
+      </div>
     </li>
   );
 }

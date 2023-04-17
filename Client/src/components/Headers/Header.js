@@ -19,7 +19,6 @@ const Header = ({setSearchRes}) => {
     const Result = await fetch(`/api/recipes/find?search=${UserInput}`);
     const JsonResult = await Result.json();
     setSearchRes(JsonResult);
-    console.log(JsonResult);
   };
 
   return (
