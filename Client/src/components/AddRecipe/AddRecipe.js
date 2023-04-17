@@ -18,7 +18,7 @@
         const[enteredIng4, setEnteredIng4]=useState('')
         const[enteredIng5, setEnteredIng5]=useState('')
         const[enteredIng6, setEnteredIng6]=useState('')
-       
+        const [Msg, setMsg] = useState("");
        const TitleHandler=(event)=>{setEntEredTitle(event.target.value)  }
        const UrlHandler=(event)=>{setEnteredUrl(event.target.value)  }
        const ImgUrlHandler=(event)=>{setEnteredImUrl(event.target.value)  }
@@ -38,8 +38,7 @@
       const ingredients=[]
       ingredients.push(enteredIng1,enteredIng2,enteredIng3,enteredIng4,enteredIng5,enteredIng6)
       if(title==="" || publisher==="" || servings==='' || image==='' || cookingTime==='' ||sourceUrl===''){ 
-        
-        
+        setMsg('All fields in Recipe Data section has to be filled')
       } else{
       console.log(ingredients)
     await fetch('/api/recipes', {
@@ -135,10 +134,10 @@
                 placeholder="Format: 'Quantity,Unit,Description'"
               />
             </div>
-    
+            <h2 >{Msg}</h2>
             <button className="btn upload__btn" onClick={UploadHandler}>
               <svg>
-               
+              <use href="src/img/icons.svg#icon-upload-cloud"></use>
               </svg>
               <span>Upload</span>
             </button>
