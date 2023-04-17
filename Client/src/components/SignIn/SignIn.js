@@ -43,7 +43,7 @@ const SignIn = (props) => {
       enteredEmail !== "" &&
       enteredPassword !== ""
     ) {
-      const response = await fetch("/api/users/login", {
+      const response = await fetch("/api/users/", {
         method: "POST",
         body: JSON.stringify({
           email: enteredEmail,
