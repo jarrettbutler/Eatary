@@ -1,67 +1,68 @@
- import React,{Fragment} from 'react'
+ import React,{Fragment,useState} from 'react'
  import "./../../styles/main.scss";
 
- const[title, setEntEredTitle]=useState('')
- const[sourceUrl, setEnteredUrl]=useState('')
- const[image, setEnteredImUrl]=useState('')
- const[publisher, setEnteredPublisher]=useState('')
- const[cookingTime, setEnteredPrepTime]=useState('')
- const[servings, setEnteredServings]=useState('')
- const[enteredIng1, setEnteredIng1]=useState('')
- const[enteredIng2, setEnteredIng2]=useState('')
- const[enteredIng3, setEnteredIng3]=useState('')
- const[enteredIng4, setEnteredIng4]=useState('')
- const[enteredIng5, setEnteredIng5]=useState('')
- const[enteredIng6, setEnteredIng6]=useState('')
- 
-const TitleHandler=(event)=>{setEntEredTitle(event.target.value)  }
-const UrlHandler=(event)=>{setEnteredUrl(event.target.value)  }
-const ImgUrlHandler=(event)=>{setEnteredImUrl(event.target.value)  }
-const PublisherlHandler=(event)=>{setEnteredPublisher(event.target.value)}
-const PrepTimelHandler=(event)=>{setEnteredPrepTime(event.target.value)}
-const ServingsHandler=(event)=>{setEnteredServings(event.target.value)}
-
-const Ingredient1Handler=(event)=>{setEnteredIng1(event.target.value)}
-const Ingredient2Handler=(event)=>{setEnteredIng2(event.target.value)}
-const Ingredient3Handler=(event)=>{setEnteredIng3(event.target.value)}
-const Ingredient4Handler=(event)=>{setEnteredIng4(event.target.value)}
-const Ingredient5Handler=(event)=>{setEnteredIng5(event.target.value)}
-const Ingredient6Handler=(event)=>{setEnteredIng6(event.target.value)}
 
 
-const UploadHandler=async(event)=> {event.preventDefault()
-  
-  const userGenerated=true
-  const ingredients=[]
-  ingredients.push(enteredIng1,enteredIng2,enteredIng3,enteredIng4,enteredIng5,enteredIng6)
-  if(title==="" || publisher==="" || servings==='' || image==='' || cookingTime==='' ||sourceUrl===''){ 
-    setMsg('All fields in Recipe Data section has to be filled')
-    setInfo("error")
-    
-  } else{
-  console.log(ingredients)
-await fetch('/api/recipes', {
-  method: 'POST',
-   body: JSON.stringify({ userGenerated, title, publisher, sourceUrl, image, servings, cookingTime, ingredients }),
-    headers: { 'Content-Type': 'application/json' },})
-setMsg('Your recipe has been successfully added')
-setInfo("success")
-setEntEredTitle('')
- setEnteredUrl('')
-setEnteredImUrl('')
-setEnteredPublisher('')
-setEnteredPrepTime('')
-setEnteredServings('')
-setEnteredIng1('')
-setEnteredIng2('')
-setEnteredIng3('')
-setEnteredIng4('')
-setEnteredIng5('')
-setEnteredIng6('')
-alert("Your recipe has been successfully added")
- }
-}
+
+
  const AddRecipe =()=>{
+    const[title, setEntEredTitle]=useState('')
+        const[sourceUrl, setEnteredUrl]=useState('')
+        const[image, setEnteredImUrl]=useState('')
+        const[publisher, setEnteredPublisher]=useState('')
+        const[cookingTime, setEnteredPrepTime]=useState('')
+        const[servings, setEnteredServings]=useState('')
+        const[enteredIng1, setEnteredIng1]=useState('')
+        const[enteredIng2, setEnteredIng2]=useState('')
+        const[enteredIng3, setEnteredIng3]=useState('')
+        const[enteredIng4, setEnteredIng4]=useState('')
+        const[enteredIng5, setEnteredIng5]=useState('')
+        const[enteredIng6, setEnteredIng6]=useState('')
+       
+       const TitleHandler=(event)=>{setEntEredTitle(event.target.value)  }
+       const UrlHandler=(event)=>{setEnteredUrl(event.target.value)  }
+       const ImgUrlHandler=(event)=>{setEnteredImUrl(event.target.value)  }
+       const PublisherlHandler=(event)=>{setEnteredPublisher(event.target.value)}
+       const PrepTimelHandler=(event)=>{setEnteredPrepTime(event.target.value)}
+       const ServingsHandler=(event)=>{setEnteredServings(event.target.value)}
+       
+       const Ingredient1Handler=(event)=>{setEnteredIng1(event.target.value)}
+       const Ingredient2Handler=(event)=>{setEnteredIng2(event.target.value)}
+       const Ingredient3Handler=(event)=>{setEnteredIng3(event.target.value)}
+       const Ingredient4Handler=(event)=>{setEnteredIng4(event.target.value)}
+       const Ingredient5Handler=(event)=>{setEnteredIng5(event.target.value)}
+       const Ingredient6Handler=(event)=>{setEnteredIng6(event.target.value)}
+    const UploadHandler=async(event)=> {event.preventDefault()
+        
+      const userGenerated=true
+      const ingredients=[]
+      ingredients.push(enteredIng1,enteredIng2,enteredIng3,enteredIng4,enteredIng5,enteredIng6)
+      if(title==="" || publisher==="" || servings==='' || image==='' || cookingTime==='' ||sourceUrl===''){ 
+        
+        
+      } else{
+      console.log(ingredients)
+    await fetch('/api/recipes', {
+      method: 'POST',
+       body: JSON.stringify({ userGenerated, title, publisher, sourceUrl, image, servings, cookingTime, ingredients }),
+        headers: { 'Content-Type': 'application/json' },})
+    
+    setEntEredTitle('')
+     setEnteredUrl('')
+    setEnteredImUrl('')
+    setEnteredPublisher('')
+    setEnteredPrepTime('')
+    setEnteredServings('')
+    setEnteredIng1('')
+    setEnteredIng2('')
+    setEnteredIng3('')
+    setEnteredIng4('')
+    setEnteredIng5('')
+    setEnteredIng6('')
+    alert("Your recipe has been successfully added")
+     }
+    }
+
     return (
         <Fragment>
         <div className="overlay "></div>
@@ -71,7 +72,7 @@ alert("Your recipe has been successfully added")
             <div className="upload__column">
               <h3 className="upload__heading">Recipe data</h3>
               <label>Title</label>
-              <input onChange={TitleHandler} value={title} required name="title" type="text" />
+              <input type="text" onChange={TitleHandler} value={title} required name="title"  />
               <label>URL</label>
               <input onChange={UrlHandler} value={sourceUrl} required name="sourceUrl" type="text" />
               <label>Image URL</label>
@@ -133,7 +134,7 @@ alert("Your recipe has been successfully added")
     
             <button className="btn upload__btn" onClick={UploadHandler}>
               <svg>
-                <use href="src/img/icons.svg#icon-upload-cloud"></use>
+               
               </svg>
               <span>Upload</span>
             </button>
