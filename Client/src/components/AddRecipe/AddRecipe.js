@@ -1,6 +1,6 @@
  import React,{Fragment,useState} from 'react'
  import "./../../styles/main.scss";
-
+ import Icons from "../../img/icons.svg";
 
 
 
@@ -137,7 +137,7 @@
             <h2 >{Msg}</h2>
             <button className="btn upload__btn" onClick={UploadHandler}>
               <svg>
-              <use href="src/img/icons.svg#icon-upload-cloud"></use>
+              <use xlinkHref={`${Icons}#icon-upload-cloud`}></use>
               </svg>
               <span>Upload</span>
             </button>

@@ -1,4 +1,5 @@
 import "./../../styles/main.scss";
+import Icons from "../../img/icons.svg";
 
 function SingleRecipe(props) {
   const recipe = props.recipeRes
@@ -11,15 +12,15 @@ function SingleRecipe(props) {
         <div className="preview__data">
           <h4 className="preview__title">{recipe.title} ...</h4>
           <p className="preview__publisher">{recipe.publisher}</p>
-          <div className="preview__user-generated">
+          {recipe.userGenerated? <div className="preview__user-generated">
             <svg>
-              <use href=""></use>
-            </svg>
-          </div>
+              <use xlinkHref={`${Icons}#icon-user`}></use>
+            </svg> 
+          </div>:""}
         </div>
       </div>
     </li>
-  );
+  )
 }
 
 export default SingleRecipe;

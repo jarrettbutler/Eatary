@@ -1,6 +1,8 @@
 import "./../../styles/main.scss";
 import AddRecipe from "../AddRecipe/AddRecipe";
 import { useState } from "react";
+import Icons from "../../img/icons.svg";
+
 const Navigation = (props) => {
 
   const [showAddRecipe, setAddRecipe]=useState(null)
@@ -29,7 +31,7 @@ const Navigation = (props) => {
         <li className="nav__item">
           <button className="nav__btn nav__btn--add-recipe" onClick={AddRecipeHandler}>
             <svg className="nav__icon">
-              <use href=""></use>
+              <use xlinkHref={`${Icons}#icon-edit`}></use>
             </svg>
             <span>Add recipe</span>
           </button>
@@ -37,7 +39,7 @@ const Navigation = (props) => {
         <li className="nav__item">
           <button className="nav__btn nav__btn--bookmarks">
             <svg className="nav__icon">
-              <use href=""></use>
+              <use xlinkHref={`${Icons}#icon-bookmark`}></use>
             </svg>
             <span>Bookmarks</span>
           </button>
@@ -46,7 +48,7 @@ const Navigation = (props) => {
               <div className="message">
                 <div>
                   <svg>
-                    <use href=""></use>
+                    <use xlinkHref={`${Icons}#icon-smile`}></use>
                   </svg>
                 </div>
                 <p>No bookmarks yet. Find a nice recipe and bookmark it :)</p>

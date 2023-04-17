@@ -1,6 +1,7 @@
 import "./../../styles/main.scss";
 import React, { useState } from "react";
 import Navigation from "./Navigation.js";
+import Icons from "../../img/icons.svg";
 
 const Header = ({setSearchRes}) => {
   
@@ -33,7 +34,7 @@ const Header = ({setSearchRes}) => {
         />
         <button className="btn search__btn" type='submit'>
           <svg className="search__icon">
-            <use href=""></use>
+            <use xlinkHref={`${Icons}#icon-search`}></use>
           </svg>
           <span>Search</span>
         </button>
