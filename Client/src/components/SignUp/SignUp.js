@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
-import "./SignUp.css";
 import { emailValidator } from "../../helpers/regexValidator";
+import "./../../styles/main.scss";
 
 const SignUp = (props) => {
   const [enteredName, setEnteredName] = useState("");
@@ -78,42 +78,42 @@ const SignUp = (props) => {
 
   return (
     <Fragment>
-      <form className="sign-up__form" onSubmit={sigUpHandler}>
-        <label>User Name</label>
+      <form className="sign-in__form" onSubmit={sigUpHandler}>
+        <label className="sign-in__form--label">User Name</label>
         <input
-          className="userEmailInput"
+          className="sign-in__form--input"
           type="text"
           onChange={nameHandler}
           placeholder="Enter User Name"
         ></input>
-        <label>Email</label>
+        <label className="sign-in__form--label">Email</label>
         <input
-          className="userEmailInput"
+          className="sign-in__form--input"
           type="email"
           onChange={emailHandler}
           placeholder="example@example.com"
         ></input>
-        <label>Password</label>
+        <label className="sign-in__form--label">Password</label>
         <input
-          className="userPwInput"
+          className="sign-in__form--input"
           type="password"
           onChange={passwordHandler}
           placeholder="Enter your Password"
         ></input>{" "}
         <p></p>
         {!passwordIsValid ? (
-          <p>Password must be at least 8 characters long </p>
+          <p className="sign-up__form--p">Password must be at least 8 characters long </p>
         ) : (
           ""
         )}
         {!emailIsValid ? (
-          <p>Wrong format for e-mail address (example: example@email.com)</p>
+          <p className="sign-up__form--p">Wrong format for e-mail address (example: example@email.com)</p>
         ) : (
           ""
         )}
-        {!nameIsValid ? <p>Name field can not be empty</p> : ""}
-        <button type="submit">SignUp </button>
-        <button onClick={signInHandler} type="button">
+        {!nameIsValid ? <p className="sign-up__form--p">Name field can not be empty</p> : ""}
+        <button type="submit" className="sign-in__form--btn">SignUp </button>
+        <button onClick={signInHandler} type="button" className="sign-in__form--btn">
           Or Login
         </button>
       </form>

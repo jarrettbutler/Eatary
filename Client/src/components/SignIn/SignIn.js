@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { emailValidator } from "../../helpers/regexValidator";
-import "./SignIn.css";
+import "./../../styles/main.scss";
 
 const SignIn = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -66,28 +66,28 @@ const SignIn = (props) => {
   return (
     <Fragment>
       <form className="sign-in__form" onSubmit={logInHandler}>
-        <label>Email</label>
+        <label className="sign-in__form--label">Email</label>
         <input
-          className="userEmailInput"
+          className="sign-in__form--input"
           type="email"
           onChange={emailHandler}
           placeholder="example@example.com"
         ></input>
-        <label>Password</label>
+        <label className="sign-in__form--label">Password</label>
         <input
-          className="userPwInput"
+          className="sign-in__form--input"
           type="password"
           onChange={passHandler}
           placeholder="Enter your password"
         ></input>
         {!passwordIsValid ? (
-          <p>The password input field cannot be empty </p>
+          <p className="sign-up__form--p">The password input field cannot be empty </p>
         ) : (
           ""
         )}
 
         {!emailIsValid ? (
-          <p>Wrong format for e-mail address (example: example@email.com)</p>
+          <p className="sign-up__form--p">Wrong format for e-mail address (example: example@email.com)</p>
         ) : (
           ""
         )}
