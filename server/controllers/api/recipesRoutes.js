@@ -10,8 +10,6 @@ router.get("/", withAuth, async (req, res) => {
 });
 
 router.get("/find", withAuth, async (req, res) => {
-  // console.log(req.query.search);
-
   try {
     const recipesData = await Recipes.findAll({
       where: {
