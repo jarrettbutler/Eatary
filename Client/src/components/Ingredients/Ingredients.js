@@ -12,6 +12,9 @@ const Ingredients = (props) => {
   console.log(att);
   console.log(props.attRes);
 
+const[addBookmark, setBookmark]=useState('')
+const[removeBookmark, setRemoveBookmark]=useState('hideBookmark')
+
   useEffect(() => {
     setAtt(props.attRes);
     attRes();
@@ -29,12 +32,16 @@ const Ingredients = (props) => {
   };
 
   const clicker = () => {
-    if (!click) {
-      setClick(true)
-    } else 
-    setClick(false)
+    setBookmark('hideBookmark')
+    setRemoveBookmark('')
+    console.log('empty clicked')
   }
 
+  const RemoveBMHandler= ()=>{
+    setBookmark('')
+    setRemoveBookmark('hideBookmark')
+    console.log('filled clicked')
+  }
   if (recipeData) {
     return (
       <div className="recipe ">
@@ -87,10 +94,14 @@ const Ingredients = (props) => {
               <use xlinkHref={`${Icons}#icon-user`}></use>
             </svg>
           </div>
-          <button className="btn--round" onClick={clicker}>
+          <button className={`${"btn--round"} ${addBookmark}`} onClick={clicker}>
             <svg className="">
-              {click? <use xlinkHref={`${Icons}#icon-bookmark`}></use>:
-              <use xlinkHref={`${Icons}#icon-bookmark-fill`}></use>}
+              <use xlinkHref={`${Icons}#icon-bookmark`}></use>:
+            </svg>
+          </button>
+          <button className={`${"btn--round"} ${removeBookmark}`} onClick={RemoveBMHandler}>
+            <svg className="">
+              <use xlinkHref={`${Icons}#icon-bookmark-fill`}></use>
             </svg>
           </button>
         </div>
