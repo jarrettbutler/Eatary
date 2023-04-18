@@ -3,13 +3,13 @@ const { Recipes, User } = require("../../models");
 const { Op } = require("sequelize");
 const withAuth = require("../../utils/auth");
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/", async (req, res) => {
   Recipes.findAll({ raw: true }).then((recipes) => {
     res.json(recipes);
   });
 });
 
-router.get("/find", withAuth, async (req, res) => {
+router.get("/find", async (req, res) => {
   // console.log(req.query.search);
 
   try {
@@ -31,7 +31,7 @@ router.get("/find", withAuth, async (req, res) => {
   }
 });
 
-router.get("/:id", withAuth, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const recipesData = await Recipes.findByPk(req.params.id, {
       include: [
@@ -46,7 +46,7 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
-router.post("/", withAuth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const newRecipe = await Recipes.create(req.body);
     res.status(200).json(newRecipe);
@@ -56,7 +56,7 @@ router.post("/", withAuth, async (req, res) => {
 });
 
 //DELETE recipe created by user
-router.delete("/:id", withAuth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const deleteUserRecipe = await Recipes.destroy({
       where: {
