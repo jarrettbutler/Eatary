@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import "./../../styles/main.scss";
+import Icons from "../../img/icons.svg";
 
 import WeclomeMessage from "./WelcomeMessage";
 
 const Ingredients = (props) => {
   const [att, setAtt] = useState("");
   const [recipeData, setRecipeData] = useState("");
+  const [click, setClick] = useState(false);
   console.log(recipeData);
   console.log(att);
   console.log(props.attRes);
@@ -26,6 +28,13 @@ const Ingredients = (props) => {
     }
   };
 
+  const clicker = () => {
+    if (!click) {
+      setClick(true)
+    } else 
+    setClick(false)
+  }
+
   if (recipeData) {
     return (
       <div className="recipe ">
@@ -43,7 +52,7 @@ const Ingredients = (props) => {
         <div className="recipe__details">
           <div className="recipe__info">
             <svg className="recipe__info-icon">
-              <use href=""></use>
+              <use xlinkHref={`${Icons}#icon-clock`}></use>
             </svg>
             <span className="recipe__info-data recipe__info-data--minutes">
               {!recipeData ? "" : recipeData.cookingTime}
@@ -52,7 +61,7 @@ const Ingredients = (props) => {
           </div>
           <div className="recipe__info">
             <svg className="recipe__info-icon">
-              <use href=""></use>
+              <use xlinkHref={`${Icons}#icon-user`}></use>
             </svg>
             <span className="recipe__info-data recipe__info-data--people">
               {!recipeData ? "" : recipeData.servings}
@@ -62,12 +71,12 @@ const Ingredients = (props) => {
             <div className="recipe__info-buttons">
               <button className="btn--tiny btn--increase-servings">
                 <svg>
-                  <use href=""></use>
+                  <use xlinkHref={`${Icons}#icon-minus-circle`}></use>
                 </svg>
               </button>
               <button className="btn--tiny btn--increase-servings">
                 <svg>
-                  <use href=""></use>
+                  <use xlinkHref={`${Icons}#icon-plus-circle`}></use>
                 </svg>
               </button>
             </div>
@@ -75,12 +84,13 @@ const Ingredients = (props) => {
 
           <div className="recipe__user-generated">
             <svg>
-              <use href=""></use>
+              <use xlinkHref={`${Icons}#icon-user`}></use>
             </svg>
           </div>
-          <button className="btn--round">
+          <button className="btn--round" onClick={clicker}>
             <svg className="">
-              <use href=""></use>
+              {click? <use xlinkHref={`${Icons}#icon-bookmark`}></use>:
+              <use xlinkHref={`${Icons}#icon-bookmark-fill`}></use>}
             </svg>
           </button>
         </div>
@@ -93,7 +103,7 @@ const Ingredients = (props) => {
               : recipeData.ingredients.map((ing) => (
                   <li className="recipe__ingredient">
                     <svg className="recipe__icon">
-                      <use href=""></use>
+                      <use xlinkHref={`${Icons}#icon-check`}></use>
                     </svg>
                     <div className="recipe__quantity">{ing.quantity}</div>
                     <div className="recipe__description">
@@ -122,7 +132,7 @@ const Ingredients = (props) => {
           >
             <span>Directions</span>
             <svg className="search__icon">
-              <use href=""></use>
+              <use xlinkHref={`${Icons}#icon-arrow-right`}></use>
             </svg>
           </a>
         </div>
