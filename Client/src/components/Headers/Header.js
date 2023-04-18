@@ -24,7 +24,13 @@ const Header = ({setSearchRes}) => {
 
   return (
     <header className="header">
-      <img src="" alt="Logo" className="header__logo" />
+   <button className="btn search__btn" >
+        <svg className="search__icon"></svg>
+        < a href="https://donate.stripe.com/9AQ6oQ0Es8Lo08g000" target = "_blank" style = {{color: "white"}}>Donate</a>
+      </button>
+
+
+
       <form className="search" onSubmit={SearchHandler}>
         <input
           type="text"
