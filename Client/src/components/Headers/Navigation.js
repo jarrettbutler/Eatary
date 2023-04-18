@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import "./../../styles/main.scss";
 import AddRecipe from "../AddRecipe/AddRecipe";
-import { useState } from "react";
 import Icons from "../../img/icons.svg";
 
+
 const Navigation = (props) => {
+
+  const handleContactFormClick = () => {
+    window.open('/contact', '_blank');
+  };
+
 
   const [showAddRecipe, setAddRecipe]=useState(null)
   const logOutHandler = async function () {
@@ -28,6 +34,15 @@ const Navigation = (props) => {
   return (
     <nav className="nav">
       <ul className="nav__list">
+
+      <li className="nav__item">
+          <button className="nav__btn nav__btn--contact" onClick={handleContactFormClick}>
+            <svg className="nav__icon">
+        </svg>
+           <span>Contact</span> 
+          </button>
+          </li>
+
         <li className="nav__item">
           <button className="nav__btn nav__btn--add-recipe" onClick={AddRecipeHandler}>
             <svg className="nav__icon">
