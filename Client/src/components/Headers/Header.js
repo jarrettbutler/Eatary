@@ -25,8 +25,10 @@ const Header = ({setSearchRes}) => {
   return (
     <header className="header">
    <button className="btn search__btn" >
-        <svg className="search__icon"></svg>
-        < a href="https://donate.stripe.com/9AQ6oQ0Es8Lo08g000" target = "_blank" style = {{color: "white"}}>Donate</a>
+        <svg className="search__icon">
+          <use xlinkHref={`${Icons}#icon-donate`}></use>
+        </svg>
+        < a href="https://donate.stripe.com/9AQ6oQ0Es8Lo08g000" target = "_blank" style = {{color: "white", textDecoration: "none"}}>Donate</a>
       </button>
 
 

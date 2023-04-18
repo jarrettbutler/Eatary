@@ -38,6 +38,7 @@ const Navigation = (props) => {
       <li className="nav__item">
           <button className="nav__btn nav__btn--contact" onClick={handleContactFormClick}>
             <svg className="nav__icon">
+            <use xlinkHref={`${Icons}#icon-contact`}></use>
         </svg>
            <span>Contact</span> 
           </button>
@@ -77,7 +78,7 @@ const Navigation = (props) => {
             className="nav__btn nav__btn--add-recipe"
           >
             <svg className="nav__icon">
-              <use href=""></use>
+              <use xlinkHref={`${Icons}#icon-logout`}></use>
             </svg>
             <span>Logout</span>
           </button>

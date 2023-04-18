@@ -1,4 +1,5 @@
 import "./../../styles/main.scss";
+import Icons from "../../img/icons.svg";
 
 function ErrorMessage() {
   return (
@@ -6,7 +7,7 @@ function ErrorMessage() {
       <div className="error ">
         <div>
           <svg>
-            <use href=""></use>
+            <use xlinkHref={`${Icons}#icon-alert-triangle`}></use>
           </svg>
         </div>
         <p>No recipes found for your query. Please try again!</p>
