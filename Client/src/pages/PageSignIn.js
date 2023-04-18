@@ -1,7 +1,10 @@
 import SignIn from "../components/SignIn/SignIn";
 
 function PageSignIn() {
-  return <SignIn />;
+  return (
+  <div className="SingUPage">
+  <SignIn />
+  </div>)
 }
 
 export default PageSignIn;
