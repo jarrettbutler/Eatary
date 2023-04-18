@@ -1,35 +1,42 @@
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./../../styles/main.scss";
-import ErrorMessage from "./ErrorMessage";
+
 import WeclomeMessage from "./WelcomeMessage";
 
 const Ingredients = (props) => {
-
-  const [att, setAtt] = useState('');
-  const [recipeData, setRecipeData] = useState('');
+  const [att, setAtt] = useState("");
+  const [recipeData, setRecipeData] = useState("");
+  console.log(recipeData);
+  console.log(att);
   console.log(props.attRes);
 
-useEffect(() => {
-  attRes();
-}, [att]);
+  useEffect(() => {
+    setAtt(props.attRes);
+    attRes();
+  }, [props.attRes, att]);
 
   const attRes = async () => {
-    const Result = await fetch(`/api/recipes/${props.attRes}`);
-    const JsonResult = await Result.json();
-    setRecipeData(JsonResult)
-    setAtt(props.attRes)
-    console.log(recipeData);
-  }
+    if (att === "") {
+    } else {
+      const Result = await fetch(`/api/recipes/${att}`);
+      const JsonResult = await Result.json();
+      setRecipeData(JsonResult);
+      console.log(recipeData);
+      setAtt(props.attRes);
+    }
+  };
 
-  return (
-    <Fragment>
+  if (recipeData) {
+    return (
       <div className="recipe ">
-        <ErrorMessage />
-        <WeclomeMessage />
         <figure className="recipe__fig">
-          <img src="" alt="Tomato" className="recipe__img" />
+          <img
+            src={!recipeData ? "" : recipeData.image}
+            alt="Tomato"
+            className="recipe__img"
+          />
           <h1 className="recipe__title">
-            <span>Pasta with tomato cream sauce</span>
+            <span>{!recipeData ? "" : recipeData.title}</span>
           </h1>
         </figure>
 
@@ -39,7 +46,7 @@ useEffect(() => {
               <use href=""></use>
             </svg>
             <span className="recipe__info-data recipe__info-data--minutes">
-              45
+              {!recipeData ? "" : recipeData.cookingTime}
             </span>
             <span className="recipe__info-text">minutes</span>
           </div>
@@ -48,7 +55,7 @@ useEffect(() => {
               <use href=""></use>
             </svg>
             <span className="recipe__info-data recipe__info-data--people">
-              4
+              {!recipeData ? "" : recipeData.servings}
             </span>
             <span className="recipe__info-text">servings</span>
 
@@ -81,27 +88,20 @@ useEffect(() => {
         <div className="recipe__ingredients">
           <h2 className="heading--2">Recipe ingredients</h2>
           <ul className="recipe__ingredient-list">
-            <li className="recipe__ingredient">
-              <svg className="recipe__icon">
-                <use href=""></use>
-              </svg>
-              <div className="recipe__quantity">1000</div>
-              <div className="recipe__description">
-                <span className="recipe__unit">g</span>
-                pasta
-              </div>
-            </li>
-
-            <li className="recipe__ingredient">
-              <svg className="recipe__icon">
-                <use href=""></use>
-              </svg>
-              <div className="recipe__quantity">0.5</div>
-              <div className="recipe__description">
-                <span className="recipe__unit">cup</span>
-                ricotta cheese
-              </div>
-            </li>
+            {!recipeData
+              ? ""
+              : recipeData.ingredients.map((ing) => (
+                  <li className="recipe__ingredient">
+                    <svg className="recipe__icon">
+                      <use href=""></use>
+                    </svg>
+                    <div className="recipe__quantity">{ing.quantity}</div>
+                    <div className="recipe__description">
+                      <span className="recipe__unit">{ing.unit}</span>
+                      {ing.description}
+                    </div>
+                  </li>
+                ))}
           </ul>
         </div>
 
@@ -109,13 +109,16 @@ useEffect(() => {
           <h2 className="heading--2">How to cook it</h2>
           <p className="recipe__directions-text">
             This recipe was carefully designed and tested by
-            <span className="recipe__publisher">The Pioneer Woman</span>. Please
-            check out directions at their website.
+            <span className="recipe__publisher">
+              {!recipeData ? "" : recipeData.publisher}
+            </span>
+            . Please check out directions at their website.
           </p>
           <a
             className="btn--small recipe__btn"
-            href="http://thepioneerwoman.com/cooking/pasta-with-tomato-cream-sauce/"
+            href={!recipeData ? "" : recipeData.sourceUrl}
             target="_blank"
+            rel="noreferrer"
           >
             <span>Directions</span>
             <svg className="search__icon">
@@ -124,7 +127,10 @@ useEffect(() => {
           </a>
         </div>
       </div>
-    </Fragment>
-  );
+    );
+  } else {
+    return <WeclomeMessage />;
+  }
 };
+
 export default Ingredients;
