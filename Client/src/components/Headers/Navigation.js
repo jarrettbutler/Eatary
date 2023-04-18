@@ -36,9 +36,7 @@ const Navigation = (props) => {
       <ul className="nav__list">
 
       <li className="nav__item">
-          <button className="nav__btn nav__btn--contact" onClick={handleContactFormClick}>
-            <svg className="nav__icon">
-        </svg>
+          <button className="nav__btn nav__btn" onClick={handleContactFormClick}>
            <span>Contact</span> 
           </button>
           </li>
@@ -76,9 +74,6 @@ const Navigation = (props) => {
             onClick={logOutHandler}
             className="nav__btn nav__btn--add-recipe"
           >
-            <svg className="nav__icon">
-              <use href=""></use>
-            </svg>
             <span>Logout</span>
           </button>
         </li>
