@@ -117,7 +117,9 @@ body {
   text-align: center;
   color: red;
 }
-
+.hideBookmark{
+  display:none ;
+}
 @media (max-width: 1200px) {
   .sign-in__form {
     margin-left: 20%;
