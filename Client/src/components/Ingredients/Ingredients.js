@@ -72,6 +72,51 @@ const Ingredients = (props) => {
       alert("Error please try again");
     }
   };
+
+  const updatedServings = async function (newServings) {
+    const ingredients = recipeData.ingredients;
+    let newIngredients = [];
+
+    ingredients.map((ing) => {
+      newIngredients.push({
+        unit: ing.unit,
+        quantity: ((ing.quantity * newServings) / recipeData.servings).toFixed(
+          1
+        ),
+        description: ing.description,
+      });
+    });
+
+    setRecipeData({
+      ...recipeData,
+      servings: newServings,
+      ingredients: newIngredients,
+    });
+
+    console.log(recipeData);
+    console.log(newIngredients);
+  };
+
+  const increaseServings = async function (e) {
+    e.preventDefault();
+    const newServings = recipeData.servings + 1;
+
+    updatedServings(newServings);
+  };
+
+  const decreaseServings = async function (e) {
+    e.preventDefault();
+    let newServings;
+
+    if (recipeData.servings > 1) {
+      newServings = recipeData.servings - 1;
+    } else {
+      newServings = 1;
+    }
+
+    updatedServings(newServings);
+  };
+
   if (recipeData) {
     return (
       <div className="recipe ">
@@ -106,12 +151,18 @@ const Ingredients = (props) => {
             <span className="recipe__info-text">servings</span>
 
             <div className="recipe__info-buttons">
-              <button className="btn--tiny btn--increase-servings">
+              <button
+                className="btn--tiny btn--increase-servings"
+                onClick={decreaseServings}
+              >
                 <svg>
                   <use xlinkHref={`${Icons}#icon-minus-circle`}></use>
                 </svg>
               </button>
-              <button className="btn--tiny btn--increase-servings">
+              <button
+                className="btn--tiny btn--increase-servings"
+                onClick={increaseServings}
+              >
                 <svg>
                   <use xlinkHref={`${Icons}#icon-plus-circle`}></use>
                 </svg>
@@ -159,7 +210,7 @@ const Ingredients = (props) => {
                     </svg>
                     <div className="recipe__quantity">{ing.quantity}</div>
                     <div className="recipe__description">
-                      <span className="recipe__unit">{ing.unit}</span>
+                      <span className="recipe__unit">{ing.unit}</span>&nbsp;
                       {ing.description}
                     </div>
                   </li>
