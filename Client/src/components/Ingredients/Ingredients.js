@@ -7,18 +7,28 @@ import WeclomeMessage from "./WelcomeMessage";
 const Ingredients = (props) => {
   const [att, setAtt] = useState("");
   const [recipeData, setRecipeData] = useState("");
-  const [click, setClick] = useState(false);
-  console.log(recipeData);
-  console.log(att);
-  console.log(props.attRes);
 
-const[addBookmark, setBookmark]=useState('')
-const[removeBookmark, setRemoveBookmark]=useState('hideBookmark')
+  const [addBookmark, setAddBookmark] = useState("");
+  const [removeBookmark, setRemoveBookmark] = useState("hideBookmark");
 
   useEffect(() => {
+    bookedRecData();
     setAtt(props.attRes);
     attRes();
   }, [props.attRes, att]);
+
+  const bookedRecData = async () => {
+    const res = await fetch("/api/userrecipes/book");
+    const result = await res.json();
+
+    if (result.includes(+att)) {
+      setRemoveBookmark("");
+      setAddBookmark("hideBookmark");
+    } else {
+      setRemoveBookmark("hideBookmark");
+      setAddBookmark("");
+    }
+  };
 
   const attRes = async () => {
     if (att === "") {
@@ -26,22 +36,42 @@ const[removeBookmark, setRemoveBookmark]=useState('hideBookmark')
       const Result = await fetch(`/api/recipes/${att}`);
       const JsonResult = await Result.json();
       setRecipeData(JsonResult);
-      console.log(recipeData);
+
       setAtt(props.attRes);
     }
   };
 
-  const clicker = () => {
-    setBookmark('hideBookmark')
-    setRemoveBookmark('')
-    console.log('empty clicked')
-  }
+  const addBMHandler = async () => {
+    const response = await fetch("/api/userrecipes/", {
+      method: "POST",
+      body: JSON.stringify({
+        recipeId: recipeData.id,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+      setAddBookmark("hideBookmark");
+      setRemoveBookmark("");
+    } else {
+      alert("Error please try again");
+    }
+  };
 
-  const RemoveBMHandler= ()=>{
-    setBookmark('')
-    setRemoveBookmark('hideBookmark')
-    console.log('filled clicked')
-  }
+  const removeBMHandler = async () => {
+    const response = await fetch("/api/userrecipes/", {
+      method: "DELETE",
+      body: JSON.stringify({
+        recipeId: recipeData.id,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+      setAddBookmark("");
+      setRemoveBookmark("hideBookmark");
+    } else {
+      alert("Error please try again");
+    }
+  };
   if (recipeData) {
     return (
       <div className="recipe ">
@@ -89,17 +119,28 @@ const[removeBookmark, setRemoveBookmark]=useState('hideBookmark')
             </div>
           </div>
 
-          <div className="recipe__user-generated">
-            <svg>
-              <use xlinkHref={`${Icons}#icon-user`}></use>
-            </svg>
-          </div>
-          <button className={`${"btn--round"} ${addBookmark}`} onClick={clicker}>
+          {!recipeData.userGenerated ? (
+            <div className="non"></div>
+          ) : (
+            <div className="recipe__user-generated">
+              <svg>
+                <use xlinkHref={`${Icons}#icon-user`}></use>
+              </svg>
+            </div>
+          )}
+
+          <button
+            className={`${"btn--round"} ${addBookmark}`}
+            onClick={addBMHandler}
+          >
             <svg className="">
               <use xlinkHref={`${Icons}#icon-bookmark`}></use>:
             </svg>
           </button>
-          <button className={`${"btn--round"} ${removeBookmark}`} onClick={RemoveBMHandler}>
+          <button
+            className={`${"btn--round"} ${removeBookmark}`}
+            onClick={removeBMHandler}
+          >
             <svg className="">
               <use xlinkHref={`${Icons}#icon-bookmark-fill`}></use>
             </svg>
@@ -111,8 +152,8 @@ const[removeBookmark, setRemoveBookmark]=useState('hideBookmark')
           <ul className="recipe__ingredient-list">
             {!recipeData
               ? ""
-              : recipeData.ingredients.map((ing) => (
-                  <li className="recipe__ingredient">
+              : recipeData.ingredients.map((ing, i) => (
+                  <li className="recipe__ingredient" key={i}>
                     <svg className="recipe__icon">
                       <use xlinkHref={`${Icons}#icon-check`}></use>
                     </svg>

@@ -1,17 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect, useReducer } from "react";
 import "./../../styles/main.scss";
 import AddRecipe from "../AddRecipe/AddRecipe";
 import Icons from "../../img/icons.svg";
-
+import SingleRecipe from "../Recipe/SingleRecipe";
+import BookMark from "./BookMark";
 
 const Navigation = (props) => {
-
   const handleContactFormClick = () => {
-    window.open('/contact', '_blank');
+    window.open("/contact", "_blank");
   };
 
+  const [showAddRecipe, setAddRecipe] = useState(null);
+  const [active, setActive] = useState(false);
 
-  const [showAddRecipe, setAddRecipe]=useState(null)
+  // function bookSearchedRecipe(e) {
+  //   const att = e.target.closest(".preview").getAttribute("id");
+  //   props.setAtt(att);
+  //   console.log(att);
+  // }
+
+  const hover = () => {
+    setActive(true);
+  };
+
+  const unhover = () => {
+    setActive(false);
+  };
+
   const logOutHandler = async function () {
     const response = await fetch("/api/users/logout", {
       method: "PUT",
@@ -25,27 +40,32 @@ const Navigation = (props) => {
       alert("Failed to log out");
     }
   };
-  const AddRecipeHandler=()=>{
-   setAddRecipe(1)
-  }
-  const HideAddRecipe=()=>{
-    setAddRecipe(null)
-  }
+  const AddRecipeHandler = () => {
+    setAddRecipe(1);
+  };
+  const HideAddRecipe = () => {
+    setAddRecipe(null);
+  };
   return (
     <nav className="nav">
       <ul className="nav__list">
-
-      <li className="nav__item">
-          <button className="nav__btn nav__btn--contact" onClick={handleContactFormClick}>
+        <li className="nav__item">
+          <button
+            className="nav__btn nav__btn--contact"
+            onClick={handleContactFormClick}
+          >
             <svg className="nav__icon">
-            <use xlinkHref={`${Icons}#icon-contact`}></use>
-        </svg>
-           <span>Contact</span> 
+              <use xlinkHref={`${Icons}#icon-contact`}></use>
+            </svg>
+            <span>Contact</span>
           </button>
-          </li>
+        </li>
 
         <li className="nav__item">
-          <button className="nav__btn nav__btn--add-recipe" onClick={AddRecipeHandler}>
+          <button
+            className="nav__btn nav__btn--add-recipe"
+            onClick={AddRecipeHandler}
+          >
             <svg className="nav__icon">
               <use xlinkHref={`${Icons}#icon-edit`}></use>
             </svg>
@@ -53,24 +73,22 @@ const Navigation = (props) => {
           </button>
         </li>
         <li className="nav__item">
-          <button className="nav__btn nav__btn--bookmarks">
+          <button
+            className="nav__btn nav__btn--bookmarks"
+            onMouseEnter={hover}
+            onMouseLeave={unhover}
+          >
             <svg className="nav__icon">
               <use xlinkHref={`${Icons}#icon-bookmark`}></use>
             </svg>
             <span>Bookmarks</span>
           </button>
-          <div className="bookmarks">
-            <ul className="bookmarks__list">
-              <div className="message">
-                <div>
-                  <svg>
-                    <use xlinkHref={`${Icons}#icon-smile`}></use>
-                  </svg>
-                </div>
-                <p>No bookmarks yet. Find a nice recipe and bookmark it :)</p>
-              </div>
-            </ul>
-          </div>
+          <BookMark
+            setAtt={props.setAtt}
+            active={active}
+            onMouseEnter={hover}
+            onMouseLeave={unhover}
+          />
         </li>
         <li className="nav__item">
           <button
@@ -84,7 +102,7 @@ const Navigation = (props) => {
           </button>
         </li>
       </ul>
-      {showAddRecipe ?<AddRecipe hide={HideAddRecipe}/>:""}
+      {showAddRecipe ? <AddRecipe hide={HideAddRecipe} /> : ""}
     </nav>
   );
 };
