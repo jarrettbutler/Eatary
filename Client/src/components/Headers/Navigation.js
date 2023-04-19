@@ -4,13 +4,14 @@ import AddRecipe from "../AddRecipe/AddRecipe";
 import Icons from "../../img/icons.svg";
 import SingleRecipe from "../Recipe/SingleRecipe";
 import BookMark from "./BookMark";
-
+import Message from "../AddRecipe/Message";
 const Navigation = (props) => {
   const handleContactFormClick = () => {
     window.open("/contact", "_blank");
   };
 
   const [showAddRecipe, setAddRecipe] = useState(null);
+  const [showMessage, setShowMessage] = useState(null);
   const [active, setActive] = useState(false);
 
   // function bookSearchedRecipe(e) {
@@ -45,6 +46,12 @@ const Navigation = (props) => {
   };
   const HideAddRecipe = () => {
     setAddRecipe(null);
+  };
+  const MessageShown = () => {
+    setShowMessage(1);
+  };
+  const HideMessage = () => {
+    setShowMessage(null);
   };
   return (
     <nav className="nav">
@@ -102,7 +109,8 @@ const Navigation = (props) => {
           </button>
         </li>
       </ul>
-      {showAddRecipe ? <AddRecipe hide={HideAddRecipe} /> : ""}
+      {showAddRecipe ? <AddRecipe hide={HideAddRecipe} messageshown={MessageShown} /> : ""}
+      {showMessage ? <Message hideM={HideMessage} /> : ""}
     </nav>
   );
 };

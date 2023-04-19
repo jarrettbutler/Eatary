@@ -58,8 +58,9 @@
     setEnteredIng4('')
     setEnteredIng5('')
     setEnteredIng6('')
-    alert("Your recipe has been successfully added")
+    
     props.hide()
+    props.messageshown()
      }
     }
     const closeWindow=()=>{

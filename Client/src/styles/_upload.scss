@@ -61,10 +61,12 @@
 
     & input {
       font-size: 1.5rem;
-      padding: 0.8rem 1rem;
+      padding: 0.8rem 0.5rem;
       border: 1px solid #ddd;
       border-radius: 0.5rem;
       transition: all 0.2s;
+      width:9.2rem;
+      margin-right:0.5rem;
 
       &::placeholder {
         color: $color-grey-light-3;
