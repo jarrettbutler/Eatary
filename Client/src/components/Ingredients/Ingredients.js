@@ -202,8 +202,8 @@ const Ingredients = (props) => {
           <h2 className="heading--2">Recipe ingredients</h2>
           <ul className="recipe__ingredient-list">
             {!recipeData
-              ? ""
-              : recipeData.ingredients.map((ing, i) => (
+              ?<> </>
+              : recipeData.ingredients.map((ing, i) =>{return ing.unit==="" && ing.quantity==="" && ing.description==="" ? <></> :
                   <li className="recipe__ingredient" key={i}>
                     <svg className="recipe__icon">
                       <use xlinkHref={`${Icons}#icon-check`}></use>
@@ -214,7 +214,7 @@ const Ingredients = (props) => {
                       {ing.description}
                     </div>
                   </li>
-                ))}
+                })}
           </ul>
         </div>
 
