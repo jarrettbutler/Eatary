@@ -46,7 +46,10 @@ router.get("/:id", withAuth, async (req, res) => {
 
 router.post("/", withAuth, async (req, res) => {
   try {
-    const newRecipe = await Recipes.create(req.body);
+    const newRecipe = await Recipes.create({
+      ...req.body,
+      userId: req.session.user_id,
+    });
     res.status(200).json(newRecipe);
   } catch (err) {
     res.status(400).json(err);
@@ -54,11 +57,12 @@ router.post("/", withAuth, async (req, res) => {
 });
 
 //DELETE recipe created by user
-router.delete("/:id", withAuth, async (req, res) => {
+router.delete("/", withAuth, async (req, res) => {
   try {
     const deleteUserRecipe = await Recipes.destroy({
       where: {
-        id: req.params.id,
+        id: req.body.id,
+        userId: req.session.user_id,
       },
     });
 
@@ -71,6 +75,21 @@ router.delete("/:id", withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+// UPDATE user generated Recipe
+
+router.put("/", (req, res) => {
+  Recipes.update(req.body, {
+    where: {
+      id: req.body.id,
+      user_id: req.session.user_id,
+    },
+  })
+    .then((updateRecipe) => {
+      res.json(updateRecipe);
+    })
+    .catch((err) => res.json(err));
 });
 
 module.exports = router;
