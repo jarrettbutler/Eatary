@@ -30,16 +30,18 @@
     backface-visibility: hidden;
 
     &::before {
-      content: '';
+      content: "";
       display: block;
       height: 100%;
       width: 100%;
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(to right bottom,
-          $color-grad-1,
-          $color-grad-2 );
+      background-image: linear-gradient(
+        to right bottom,
+        $color-grad-1,
+        $color-grad-2
+      );
       opacity: 0.4;
     }
 
@@ -100,4 +102,16 @@
       fill: $color-primary;
     }
   }
+}
+
+.non {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 10rem;
+
+  margin-left: auto;
+  margin-right: 1.75rem;
 }
