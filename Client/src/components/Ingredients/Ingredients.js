@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import "./../../styles/main.scss";
 import Icons from "../../img/icons.svg";
+import UpdateRecipe from "./UpdateRecipe";
 
 import WeclomeMessage from "./WelcomeMessage";
 
 const Ingredients = (props) => {
   const [att, setAtt] = useState("");
   const [recipeData, setRecipeData] = useState("");
+  const [showUpdateRecipe, setShowUpdateRecipe] = useState(false);
 
   const [addBookmark, setAddBookmark] = useState("");
   const [removeBookmark, setRemoveBookmark] = useState("hideBookmark");
@@ -117,6 +119,24 @@ const Ingredients = (props) => {
     updatedServings(newServings);
   };
 
+  const deleteUserRecipe = async () => {
+    const response = await fetch("/api/recipes/", {
+      method: "DELETE",
+      body: JSON.stringify({
+        id: recipeData.id,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+    } else {
+      alert("Error please try again");
+    }
+  };
+
+  const getUpdateWindow = () => {
+    setShowUpdateRecipe(true);
+  };
+
   if (recipeData) {
     return (
       <div className="recipe ">
@@ -173,11 +193,23 @@ const Ingredients = (props) => {
           {!recipeData.userGenerated ? (
             <div className="non"></div>
           ) : (
-            <div className="recipe__user-generated">
-              <svg>
-                <use xlinkHref={`${Icons}#icon-user`}></use>
-              </svg>
-            </div>
+            <>
+              <div className="recipe__user-generated">
+                <svg>
+                  <use xlinkHref={`${Icons}#icon-user`}></use>
+                </svg>
+              </div>
+              <button className="btn--round" onClick={getUpdateWindow}>
+                <svg className="">
+                  <use xlinkHref={`${Icons}#icon-update`}></use>:
+                </svg>
+              </button>
+              <button className="btn--round" onClick={deleteUserRecipe}>
+                <svg className="">
+                  <use xlinkHref={`${Icons}#icon--delete`}></use>:
+                </svg>
+              </button>
+            </>
           )}
 
           <button
@@ -239,6 +271,14 @@ const Ingredients = (props) => {
             </svg>
           </a>
         </div>
+        {showUpdateRecipe ? (
+          <UpdateRecipe
+            setShowUpdateRecipe={setShowUpdateRecipe}
+            recipeData={recipeData}
+          />
+        ) : (
+          <></>
+        )}
       </div>
     );
   } else {
