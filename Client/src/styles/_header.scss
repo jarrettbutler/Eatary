@@ -18,7 +18,7 @@
   border-radius: 10rem;
   display: flex;
   align-items: center;
-  padding-left: 3rem;
+  padding-left: 1.5rem;
   transition: all 0.3s;
   max-width: 425px;
 
@@ -124,23 +124,28 @@
     list-style: none;
   }
 
-  &__field {
-    cursor: pointer;
-    padding: 0 4rem;
+  // &__field {
+  //   cursor: pointer;
+  //   padding: 0 4rem;
 
-    display: flex;
-    align-items: center;
-    height: 100%;
-    transition: all 0.3s;
+  //   display: flex;
+  //   align-items: center;
+  //   height: 100%;
+  //   transition: all 0.3s;
 
-    &:hover {
-      background-color: $color-grey-light-2;
-    }
-  }
+  //   &:hover {
+  //     background-color: $color-grey-light-2;
+  //   }
+  // }
 
-  &:hover,
-  .nav__btn--bookmarks:hover + & {
-    visibility: visible;
-    opacity: 1;
-  }
+  // &:hover,
+  // + & {
+  //   visibility: visible;
+  //   opacity: 1;
+  // }
+}
+
+.hovered {
+  visibility: visible;
+  opacity: 1;
 }
