@@ -4,27 +4,24 @@ import WeclomeMessage from "../components/Ingredients/WelcomeMessage";
 import ErrorMessage from "../components/Ingredients/ErrorMessage";
 import Preview from "../components/Recipe/Preview";
 import "./../styles/main.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Home() {
   const [search, setSearchRes] = useState();
   const [att, setAtt] = useState();
+  const [data, setData] = useState();
+
+  useEffect(() => {}, [att]);
 
   return (
     <div className="container">
-      <Header setSearchRes={setSearchRes} />
+      <Header setSearchRes={setSearchRes} setAtt={setAtt} setData={setData} />
       <Preview searchRes={search} setAtt={setAtt} />
 
-      {search === undefined ? (
+      {!att && data === undefined ? (
         <WeclomeMessage />
       ) : (
-        <>
-          {search.length === 0 ? (
-            <ErrorMessage />
-          ) : (
-            <Ingredients attRes={att} />
-          )}
-        </>
+        <>{!data && !att ? <ErrorMessage /> : <Ingredients attRes={att} />}</>
       )}
     </div>
   );
