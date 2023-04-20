@@ -171,9 +171,11 @@ const Ingredient6DescHandler = (event) => {
       servings === "" ||
       image === "" ||
       cookingTime === "" ||
-      sourceUrl === ""
+      sourceUrl === "" ||
+      enteredIng1.description===""
+
     ) {
-      setMsg("All fields in Recipe Data section has to be filled");
+      setMsg("All fields in Recipe Data  section and at least first ingredient description has to be filled");
     } else {
       console.log(ingredients);
       await fetch("/api/recipes", {
@@ -436,7 +438,7 @@ const Ingredient6DescHandler = (event) => {
               />
             </div>
           </div>
-
+           <h2>{Msg}</h2>
           <button className="btn upload__btn" onClick={UploadHandler}>
             <svg>
               <use xlinkHref={`${Icons}#icon-upload-cloud`}></use>
