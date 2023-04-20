@@ -28,12 +28,16 @@ app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../Client/build')));
+}
 
 //Setup routes to the Server
 //Look at /controllers folder
 app.use("/", routes);
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Client/build', 'index.html'));
+});
 //To make use of database, once set up
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
