@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Abraham Lincoln",
+        "email": "honestabe@president.com",
+        "password": "password12345"
+    },
+    {
+        "name": "Richard Nixon",
+        "email": "trickydick@president.com",
+        "password": "password12345"
+    },
+    {
+        "name": "Calvin Coolidge",
+        "email": "coolcal@president.com",
+        "password": "password12345"
+    },
+    {
+        "name": "Franklin Roosevelt",
+        "email": "fdr@president.com",
+        "password": "password12345"
+    },
+    {
+        "name": "Bill Clinton",
+        "email": "slickwillie@president.com",
+        "password": "password12345"
+    }
+]
