@@ -24,7 +24,6 @@ function Contact() {
     }
   }
 
-
   const handleChange = (e) => {
     if (e.target.name === "email") {
       const validEmail = validateEmail(e.target.value)
@@ -44,15 +43,12 @@ function Contact() {
       else {
         seterrMsg("")
       }
-    }
-
-
+    };
 
     if (!errMsg) {
       setformState({ ...formState, [e.target.name]: e.target.value })
     }
   };
-
 
   return (
     < div className="contactForm" >
@@ -115,7 +111,6 @@ function Contact() {
       </div>
     </div>
   )
-}
-
+};
 
 export default Contact;

@@ -2,7 +2,10 @@ import React, { Fragment, useState } from "react";
 import "./../../styles/main.scss";
 import Icons from "../../img/icons.svg";
 
+
 const UpdateRecipe = (props) => {
+  const[ifDeleted,setIfDeleted]=useState(null)
+  const[ifUpdated,setIfUpdated]=useState(null)
   const [recipeData, setRecipeData] = useState(props.recipeData);
   const [title, setEntEredTitle] = useState(recipeData.title);
   const [sourceUrl, setEnteredUrl] = useState(recipeData.sourceUrl);
@@ -199,6 +202,7 @@ const UpdateRecipe = (props) => {
         headers: { "Content-Type": "application/json" },
       });
       if (!response.ok) {
+        props.showErMessage()
         console.log({
           id: recipeData.id,
           userGenerated,
@@ -242,10 +246,13 @@ const UpdateRecipe = (props) => {
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
+     
       props.setShowUpdateRecipe(false);
       props.setReRender(title);
     } else {
-      alert("Error please try again");
+      props.showErMessage()
+      
+     ;
     }
   };
 
