@@ -27,7 +27,7 @@ https://drive.google.com/file/d/1WFAVmmCox3s4VxBWv9AwnRnSnEfULtpx/view
 
 or visit the deployed site here
 
-
+https://eatary.herokuapp.com/
 
 ## Usage
 Sign up an account to use Eatary. Once on the dashboard search for your desired food. It will appear on the dashboard and you can bookmark it using the button found on the recipe. It will then be accessible in your bookmarks tab at the top of the screen. You can also use the add recipe tab to create a recipe of you own. Fill in the required fields and the recipe will save to the database and be available for all users to search.
