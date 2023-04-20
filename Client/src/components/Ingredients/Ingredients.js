@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import "./../../styles/main.scss";
 import Icons from "../../img/icons.svg";
 import UpdateRecipe from "./UpdateRecipe";
-
+import Message from './Message'
 import WeclomeMessage from "./WelcomeMessage";
 
 const Ingredients = (props) => {
   const [att, setAtt] = useState("");
   const [recipeData, setRecipeData] = useState("");
   const [showUpdateRecipe, setShowUpdateRecipe] = useState(false);
-
+  const[MessageContent,setMesssageContent]=useState('')
   const [addBookmark, setAddBookmark] = useState("");
   const [removeBookmark, setRemoveBookmark] = useState("hideBookmark");
-
+ const[errorMessage, setErorMessage ]=useState() 
   useEffect(() => {
     bookedRecData();
     setAtt(props.attRes);
@@ -60,7 +60,7 @@ const Ingredients = (props) => {
   };
 
   const removeBMHandler = async () => {
-    const response = await fetch("/api/userrecipes/", {
+     const response = await fetch("/api/userrecipes/", {
       method: "DELETE",
       body: JSON.stringify({
         recipeId: recipeData.id,
@@ -71,7 +71,9 @@ const Ingredients = (props) => {
       setAddBookmark("");
       setRemoveBookmark("hideBookmark");
     } else {
-      alert("Error please try again");
+    setErorMessage()
+    setMesssageContent("Error please try again")
+     
     }
   };
 
@@ -125,6 +127,14 @@ const Ingredients = (props) => {
   const getUpdateWindow = () => {
     setShowUpdateRecipe(true);
   };
+  const [showMessage, setShowMessage] = useState(null);
+  const displayEror = () => {
+    setErorMessage(1)
+    setMesssageContent("Error occured")
+    }
+
+  const HideMessage = () => {
+    setErorMessage(null)}
 
   if (recipeData) {
     return (
@@ -267,10 +277,13 @@ const Ingredients = (props) => {
           <UpdateRecipe
             setShowUpdateRecipe={setShowUpdateRecipe}
             recipeData={recipeData}
+            showErMessage={displayEror}
+
           />
         ) : (
           <></>
         )}
+        {errorMessage ? <Message hideM={HideMessage} messageContent={MessageContent}/> : ""}
       </div>
     );
   } else {
