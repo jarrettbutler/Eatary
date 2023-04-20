@@ -277,6 +277,9 @@ const Ingredients = (props) => {
           <UpdateRecipe
             setShowUpdateRecipe={setShowUpdateRecipe}
             recipeData={recipeData}
+
+            setReRender={props.setReRender}
+
             showErMessage={displayEror}
 
           />

@@ -7,16 +7,14 @@ import BookMark from "./BookMark";
 import Message from "../AddRecipe/Message";
 import LogoutMessage from "./LogoutMessage";
 const Navigation = (props) => {
-
-
   const handleContactFormClick = () => {
     window.open("/contact", "_blank");
   };
-  const[LogoutM,setLogout]=useState(null)
+  const [LogoutM, setLogout] = useState(null);
   const [showAddRecipe, setAddRecipe] = useState(null);
   const [showMessage, setShowMessage] = useState(null);
   const [active, setActive] = useState(false);
-  const [MessageContent, setMessageContent]=useState('')
+  const [MessageContent, setMessageContent] = useState("");
   // function bookSearchedRecipe(e) {
   //   const att = e.target.closest(".preview").getAttribute("id");
   //   props.setAtt(att);
@@ -38,16 +36,14 @@ const Navigation = (props) => {
     });
 
     if (response.ok) {
-      setLogout(1)
-      setMessageContent('You successfully logged out')
-     // document.location.replace("/");
+      setLogout(1);
+      setMessageContent("You successfully logged out");
+      // document.location.replace("/");
       //alert("You successfully logged out")
-      
     } else {
-      setShowMessage(1)
-      setMessageContent('"Failed to log out')
-      alert("Failed to log out")
-     
+      setShowMessage(1);
+      setMessageContent('"Failed to log out');
+      alert("Failed to log out");
     }
   };
   const AddRecipeHandler = () => {
@@ -57,8 +53,8 @@ const Navigation = (props) => {
     setAddRecipe(null);
   };
   const MessageShown = () => {
-       setShowMessage(1);
-       setMessageContent('Your recipe has been successfully added')
+    setShowMessage(1);
+    setMessageContent("Your recipe has been successfully added");
   };
   const HideMessage = () => {
     setShowMessage(null);
@@ -119,9 +115,26 @@ const Navigation = (props) => {
           </button>
         </li>
       </ul>
-      {showAddRecipe ? <AddRecipe hide={HideAddRecipe} messageshown={MessageShown} /> : ""}
-      {showMessage ? <Message hideM={HideMessage} messageContent={MessageContent}/> : ""}
-      //{LogoutM ? <LogoutMessage hideM={HideMessage} messageContent={MessageContent}/> : ""}
+      {showAddRecipe ? (
+        <AddRecipe
+          hide={HideAddRecipe}
+          messageshown={MessageShown}
+          setReRender={props.setReRender}
+        />
+      ) : (
+        ""
+      )}
+      {showMessage ? (
+        <Message hideM={HideMessage} messageContent={MessageContent} />
+      ) : (
+        ""
+      )}
+      //
+      {LogoutM ? (
+        <LogoutMessage hideM={HideMessage} messageContent={MessageContent} />
+      ) : (
+        ""
+      )}
     </nav>
   );
 };

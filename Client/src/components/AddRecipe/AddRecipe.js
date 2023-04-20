@@ -21,31 +21,29 @@ const AddRecipe = (props) => {
     unit: "",
     description: "",
   });
- // const [enteredIng2, setEnteredIng2] = useState("");
- const [enteredIng3, setEnteredIng3] = useState({
-  quantity: "",
-  unit: "",
-  description: "",
-});
-const [enteredIng4, setEnteredIng4] = useState({
-  quantity: "",
-  unit: "",
-  description: "",
-});
-const [enteredIng5, setEnteredIng5] = useState({
-  quantity: "",
-  unit: "",
-  description: "",
-});
-const [enteredIng6, setEnteredIng6] = useState({
-  quantity: "",
-  unit: "",
-  description: "",
-});
+  // const [enteredIng2, setEnteredIng2] = useState("");
+  const [enteredIng3, setEnteredIng3] = useState({
+    quantity: "",
+    unit: "",
+    description: "",
+  });
+  const [enteredIng4, setEnteredIng4] = useState({
+    quantity: "",
+    unit: "",
+    description: "",
+  });
+  const [enteredIng5, setEnteredIng5] = useState({
+    quantity: "",
+    unit: "",
+    description: "",
+  });
+  const [enteredIng6, setEnteredIng6] = useState({
+    quantity: "",
+    unit: "",
+    description: "",
+  });
 
-
-
- // const [enteredIng3, setEnteredIng3] = useState("");
+  // const [enteredIng3, setEnteredIng3] = useState("");
   // const [enteredIng4, setEnteredIng4] = useState("");
   // const [enteredIng5, setEnteredIng5] = useState("");
   // const [enteredIng6, setEnteredIng6] = useState("");
@@ -90,52 +88,46 @@ const [enteredIng6, setEnteredIng6] = useState({
   const Ingredient2DescHandler = (event) => {
     setEnteredIng2({ ...enteredIng2, description: event.target.value });
   };
-/////
-const Ingredient3QuantityHandler = (event) => {
-  setEnteredIng3({ ...enteredIng3, quantity: event.target.value });
-};
-const Ingredient3UnitHandler = (event) => {
-  setEnteredIng3({ ...enteredIng3, unit: event.target.value });
-};
-const Ingredient3DescHandler = (event) => {
-  setEnteredIng3({ ...enteredIng3, description: event.target.value });
-};
-///
-const Ingredient4QuantityHandler = (event) => {
-  setEnteredIng4({ ...enteredIng4, quantity: event.target.value });
-};
-const Ingredient4UnitHandler = (event) => {
-  setEnteredIng4({ ...enteredIng4, unit: event.target.value });
-};
-const Ingredient4DescHandler = (event) => {
-  setEnteredIng4({ ...enteredIng4, description: event.target.value });
-};
-//5
-const Ingredient5QuantityHandler = (event) => {
-  setEnteredIng5({ ...enteredIng5, quantity: event.target.value });
-};
-const Ingredient5UnitHandler = (event) => {
-  setEnteredIng5({ ...enteredIng5, unit: event.target.value });
-};
-const Ingredient5DescHandler = (event) => {
-  setEnteredIng5({ ...enteredIng5, description: event.target.value });
-};
-///6
-const Ingredient6QuantityHandler = (event) => {
-  setEnteredIng6({ ...enteredIng6, quantity: event.target.value });
-};
-const Ingredient6UnitHandler = (event) => {
-  setEnteredIng6({ ...enteredIng6, unit: event.target.value });
-};
-const Ingredient6DescHandler = (event) => {
-  setEnteredIng6({ ...enteredIng6, description: event.target.value });
-};
-
-
-
-
-
-
+  /////
+  const Ingredient3QuantityHandler = (event) => {
+    setEnteredIng3({ ...enteredIng3, quantity: event.target.value });
+  };
+  const Ingredient3UnitHandler = (event) => {
+    setEnteredIng3({ ...enteredIng3, unit: event.target.value });
+  };
+  const Ingredient3DescHandler = (event) => {
+    setEnteredIng3({ ...enteredIng3, description: event.target.value });
+  };
+  ///
+  const Ingredient4QuantityHandler = (event) => {
+    setEnteredIng4({ ...enteredIng4, quantity: event.target.value });
+  };
+  const Ingredient4UnitHandler = (event) => {
+    setEnteredIng4({ ...enteredIng4, unit: event.target.value });
+  };
+  const Ingredient4DescHandler = (event) => {
+    setEnteredIng4({ ...enteredIng4, description: event.target.value });
+  };
+  //5
+  const Ingredient5QuantityHandler = (event) => {
+    setEnteredIng5({ ...enteredIng5, quantity: event.target.value });
+  };
+  const Ingredient5UnitHandler = (event) => {
+    setEnteredIng5({ ...enteredIng5, unit: event.target.value });
+  };
+  const Ingredient5DescHandler = (event) => {
+    setEnteredIng5({ ...enteredIng5, description: event.target.value });
+  };
+  ///6
+  const Ingredient6QuantityHandler = (event) => {
+    setEnteredIng6({ ...enteredIng6, quantity: event.target.value });
+  };
+  const Ingredient6UnitHandler = (event) => {
+    setEnteredIng6({ ...enteredIng6, unit: event.target.value });
+  };
+  const Ingredient6DescHandler = (event) => {
+    setEnteredIng6({ ...enteredIng6, description: event.target.value });
+  };
 
   // const Ingredient2Handler = (event) => {
   //   setEnteredIng2(event.target.value);
@@ -172,13 +164,13 @@ const Ingredient6DescHandler = (event) => {
       image === "" ||
       cookingTime === "" ||
       sourceUrl === "" ||
-      enteredIng1.description===""
-
+      enteredIng1.description === ""
     ) {
-      setMsg("All fields in Recipe Data  section and at least first ingredient description has to be filled");
+      setMsg(
+        "All fields in Recipe Data  section and at least first ingredient description has to be filled"
+      );
     } else {
-      console.log(ingredients);
-      await fetch("/api/recipes", {
+      const response = await fetch("/api/recipes", {
         method: "POST",
         body: JSON.stringify({
           userGenerated,
@@ -193,20 +185,27 @@ const Ingredient6DescHandler = (event) => {
         headers: { "Content-Type": "application/json" },
       });
 
-      setEntEredTitle("");
-      setEnteredUrl("");
-      setEnteredImUrl("");
-      setEnteredPublisher("");
-      setEnteredPrepTime("");
-      setEnteredServings("");
-      setEnteredIng1("");
-      setEnteredIng2("");
-      setEnteredIng3("");
-      setEnteredIng4("");
-      setEnteredIng5("");
-      setEnteredIng6("");
-      props.hide();
-      props.messageshown();
+      if (!response.ok) {
+        alert("something wrong!");
+      } else {
+        setEntEredTitle("");
+        setEnteredUrl("");
+        setEnteredImUrl("");
+        setEnteredPublisher("");
+        setEnteredPrepTime("");
+        setEnteredServings("");
+        setEnteredIng1("");
+        setEnteredIng2("");
+        setEnteredIng3("");
+        setEnteredIng4("");
+        setEnteredIng5("");
+        setEnteredIng6("");
+        props.hide();
+        props.messageshown();
+        props.setReRender({
+          title,
+        });
+      }
     }
   };
   const closeWindow = () => {
@@ -225,6 +224,7 @@ const Ingredient6DescHandler = (event) => {
             <h3 className="upload__heading">Recipe data</h3>
             <label>Title</label>
             <input
+              className="upload__input"
               type="text"
               onChange={TitleHandler}
               value={title}
@@ -233,6 +233,7 @@ const Ingredient6DescHandler = (event) => {
             />
             <label>URL</label>
             <input
+              className="upload__input"
               onChange={UrlHandler}
               value={sourceUrl}
               required
@@ -241,6 +242,7 @@ const Ingredient6DescHandler = (event) => {
             />
             <label>Image URL</label>
             <input
+              className="upload__input"
               onChange={ImgUrlHandler}
               value={image}
               required
@@ -249,6 +251,7 @@ const Ingredient6DescHandler = (event) => {
             />
             <label>Publisher</label>
             <input
+              className="upload__input"
               onChange={PublisherlHandler}
               value={publisher}
               required
@@ -257,6 +260,7 @@ const Ingredient6DescHandler = (event) => {
             />
             <label>Prep time</label>
             <input
+              className="upload__input"
               onChange={PrepTimelHandler}
               value={cookingTime}
               required
@@ -265,6 +269,7 @@ const Ingredient6DescHandler = (event) => {
             />
             <label>Servings</label>
             <input
+              className="upload__input"
               onChange={ServingsHandler}
               value={servings}
               required
@@ -438,8 +443,8 @@ const Ingredient6DescHandler = (event) => {
               />
             </div>
           </div>
-           <h2>{Msg}</h2>
-          <button className="btn upload__btn" onClick={UploadHandler}>
+          <h2>{Msg}</h2>
+          <button className="btn upload__btn3" onClick={UploadHandler}>
             <svg>
               <use xlinkHref={`${Icons}#icon-upload-cloud`}></use>
             </svg>
