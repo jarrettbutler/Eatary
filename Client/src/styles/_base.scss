@@ -93,6 +93,7 @@ body {
   padding: 10px;
   font-size: 1rem;
 }
+
 .sign-in__form--input {
   border-radius: 15px;
   padding: 5px;
@@ -136,7 +137,6 @@ body {
     margin-left: 20%;
   }
 }
-
 
 .background {
   display: flex;
@@ -331,4 +331,48 @@ body {
   .screen-body-item {
     padding: 0;
   }
+}
+
+.about-us__form {
+  border-radius: 10px;
+  margin-top: 15%;
+  margin-left: 25%;
+  background-color: rgb(237, 234, 234);
+  width: 100rem;
+  text-align: center;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(21, 21, 22);
+  opacity: 70%;
+  border: 3px solid white;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.btn-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 30%;
+}
+.about-us__form--label {
+  font-size: 2rem;
+  margin-left: 10px;
+}
+.about-us__form--h2 {
+  font-size: 4rem;
+  margin-left: 10px;
+}
+.about-us__form--btn {
+  margin-top: 1.2rem;
+  height: 3rem;
+  border-radius: 15px;
+  cursor: pointer;
+width: 11rem;
+}
+
+.about-us__form--btn:hover {
+  background-color: grey;
 }
