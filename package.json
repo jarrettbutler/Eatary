@@ -11,6 +11,9 @@
         "build": "cd client && npm run build"
     },
     "author": "",
+    "engines": {
+        "node": "16.19.1"
+    },
     "license": "ISC",
     "devDependencies": {
         "concurrently": "^5.3.0"
