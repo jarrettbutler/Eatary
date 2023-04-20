@@ -3,6 +3,7 @@ const session = require("express-session");
 
 const routes = require("./controllers");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const path = require("path");
 
 //To make use of database, once set up
 const sequelize = require("./config/connection");
