@@ -193,11 +193,6 @@ const Ingredients = (props) => {
                   <use xlinkHref={`${Icons}#icon-update`}></use>:
                 </svg>
               </button>
-              <button className="btn--round">
-                <svg className="">
-                  <use xlinkHref={`${Icons}#icon--delete`}></use>:
-                </svg>
-              </button>
             </>
           )}
 
