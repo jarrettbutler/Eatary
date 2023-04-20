@@ -32,7 +32,7 @@ function AboutUs() {
                     </button>
                     <br></br>
                     <button onClick={signUpHandler} type="button" className="about-us__form--btn">
-                        Or SignUp
+                        SignUp
                     </button>
                 </div>
             </form>
