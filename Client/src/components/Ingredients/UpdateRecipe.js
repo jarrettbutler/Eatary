@@ -4,8 +4,6 @@ import Icons from "../../img/icons.svg";
 
 
 const UpdateRecipe = (props) => {
-  const[ifDeleted,setIfDeleted]=useState(null)
-  const[ifUpdated,setIfUpdated]=useState(null)
   const [recipeData, setRecipeData] = useState(props.recipeData);
   const [title, setEntEredTitle] = useState(recipeData.title);
   const [sourceUrl, setEnteredUrl] = useState(recipeData.sourceUrl);
@@ -24,7 +22,6 @@ const UpdateRecipe = (props) => {
     unit: recipeData.ingredients[1].unit,
     description: recipeData.ingredients[1].description,
   });
-  // const [enteredIng2, setEnteredIng2] = useState("");
   const [enteredIng3, setEnteredIng3] = useState({
     quantity: recipeData.ingredients[2].quantity,
     unit: recipeData.ingredients[2].unit,

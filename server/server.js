@@ -3,8 +3,9 @@ const session = require("express-session");
 
 const routes = require("./controllers");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const path = require("path");
 
-//TODO: Uncomment to make use of database, once set up
+//To make use of database, once set up
 const sequelize = require("./config/connection");
 
 const app = express();
@@ -28,13 +29,17 @@ app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../Client/build')));
+}
 
 //Setup routes to the Server
 //Look at /controllers folder
 app.use("/", routes);
-
-//TODO: Uncomment to make use of database, once set up
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Client/build', 'index.html'));
+});
+//To make use of database, once set up
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`Server is listening at http://localhost:${PORT}`);

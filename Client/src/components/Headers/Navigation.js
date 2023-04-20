@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState } from "react";
 import "./../../styles/main.scss";
 import AddRecipe from "../AddRecipe/AddRecipe";
 import Icons from "../../img/icons.svg";

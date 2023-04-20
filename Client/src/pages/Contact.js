@@ -20,7 +20,6 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!errMsg) {
-      console.log("submitForm", formState)
     }
   }
 
@@ -94,7 +93,6 @@ function Contact() {
                       onBlur={handleChange} defaultValue={message} />
                   </div>
                   <div className="app-form-group buttons">
-                    {/* <button className="app-form-button" onClick={handleCancel} >CANCEL</button> */}
                     <button className="app-form-button" type="submit" onSubmit={handleSubmit}>SEND</button>
                   </div>
 

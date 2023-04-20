@@ -1,6 +1,5 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import "./../../styles/main.scss";
-import Icons from "../../img/icons.svg";
 
 const Message = (props) => {
   const closeWindow = () => {

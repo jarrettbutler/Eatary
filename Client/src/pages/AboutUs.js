@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import "./../styles/main.scss";
 import video from "../img/bbq-124830.mp4"
 
@@ -32,7 +31,7 @@ function AboutUs() {
                     </button>
                     <br></br>
                     <button onClick={signUpHandler} type="button" className="about-us__form--btn">
-                        Or SignUp
+                        SignUp
                     </button>
                 </div>
             </form>
