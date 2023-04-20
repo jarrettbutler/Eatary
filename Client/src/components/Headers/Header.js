@@ -1,5 +1,5 @@
 import "./../../styles/main.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation.js";
 import Icons from "../../img/icons.svg";
 
@@ -8,6 +8,9 @@ const Header = (props) => {
   // const [SearchRes, SetSearchRes] = useState([]);
   // const [target, setTarget] = useState("");
   // const [singleRec, setSingleRec] = useState("");
+  useEffect(() => {
+    props.setReRender("1");
+  }, [props.reRender]);
 
   const InputHandler = (e) => {
     e.preventDefault();
@@ -60,7 +63,7 @@ const Header = (props) => {
           <span>Search</span>
         </button>
       </form>
-      <Navigation setAtt={props.setAtt} />
+      <Navigation setAtt={props.setAtt} setReRender={props.setReRender} />
     </header>
   );
 };

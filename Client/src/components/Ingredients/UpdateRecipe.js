@@ -226,6 +226,7 @@ const UpdateRecipe = (props) => {
         setEnteredIng5("");
         setEnteredIng6("");
         closeWindow();
+        props.setReRender(title);
       }
     }
   };
@@ -242,6 +243,7 @@ const UpdateRecipe = (props) => {
     });
     if (response.ok) {
       props.setShowUpdateRecipe(false);
+      props.setReRender(title);
     } else {
       alert("Error please try again");
     }
