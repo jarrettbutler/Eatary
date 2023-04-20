@@ -17,7 +17,7 @@ const Ingredients = (props) => {
     bookedRecData();
     setAtt(props.attRes);
     attRes();
-  }, [props.attRes, att]);
+  }, [props.attRes, att, showUpdateRecipe]);
 
   const bookedRecData = async () => {
     const res = await fetch("/api/userrecipes/book");
@@ -78,15 +78,18 @@ const Ingredients = (props) => {
   const updatedServings = async function (newServings) {
     const ingredients = recipeData.ingredients;
     let newIngredients = [];
+    console.log(ingredients);
 
     ingredients.map((ing) => {
       newIngredients.push({
         unit: ing.unit,
-        quantity: ((ing.quantity * newServings) / recipeData.servings).toFixed(
-          1
-        ),
+        quantity:
+          ing.quantity === "" || ing.quantity === null
+            ? ""
+            : ((ing.quantity * newServings) / recipeData.servings).toFixed(1),
         description: ing.description,
       });
+      return newIngredients;
     });
 
     setRecipeData({
@@ -117,20 +120,6 @@ const Ingredients = (props) => {
     }
 
     updatedServings(newServings);
-  };
-
-  const deleteUserRecipe = async () => {
-    const response = await fetch("/api/recipes/", {
-      method: "DELETE",
-      body: JSON.stringify({
-        id: recipeData.id,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
-    if (response.ok) {
-    } else {
-      alert("Error please try again");
-    }
   };
 
   const getUpdateWindow = () => {
@@ -204,7 +193,7 @@ const Ingredients = (props) => {
                   <use xlinkHref={`${Icons}#icon-update`}></use>:
                 </svg>
               </button>
-              <button className="btn--round" onClick={deleteUserRecipe}>
+              <button className="btn--round">
                 <svg className="">
                   <use xlinkHref={`${Icons}#icon--delete`}></use>:
                 </svg>
@@ -233,9 +222,15 @@ const Ingredients = (props) => {
         <div className="recipe__ingredients">
           <h2 className="heading--2">Recipe ingredients</h2>
           <ul className="recipe__ingredient-list">
-            {!recipeData
-              ?<> </>
-              : recipeData.ingredients.map((ing, i) =>{return ing.unit==="" && ing.quantity==="" && ing.description==="" ? <></> :
+            {!recipeData ? (
+              <> </>
+            ) : (
+              recipeData.ingredients.map((ing, i) => {
+                return ing.unit === "" &&
+                  ing.quantity === "" &&
+                  ing.description === "" ? (
+                  <></>
+                ) : (
                   <li className="recipe__ingredient" key={i}>
                     <svg className="recipe__icon">
                       <use xlinkHref={`${Icons}#icon-check`}></use>
@@ -246,14 +241,16 @@ const Ingredients = (props) => {
                       {ing.description}
                     </div>
                   </li>
-                })}
+                );
+              })
+            )}
           </ul>
         </div>
 
         <div className="recipe__directions">
           <h2 className="heading--2">How to cook it</h2>
           <p className="recipe__directions-text">
-            This recipe was carefully designed and tested by
+            This recipe was carefully designed and tested by&nbsp;
             <span className="recipe__publisher">
               {!recipeData ? "" : recipeData.publisher}
             </span>
