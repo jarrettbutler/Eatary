@@ -1,13 +1,10 @@
-import { useState, useEffect, useReducer, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import "./../../styles/main.scss";
 import SingleRecipe from "../Recipe/SingleRecipe";
 import Icons from "../../img/icons.svg";
 
 function BookMark(props) {
   const [bookData, setBookData] = useState("");
-  //   const [active, setActive] = useState(false);
-
-  //   console.log(bookData);
 
   useEffect(() => {
     getBookmarkedRecipes();
@@ -24,7 +21,6 @@ function BookMark(props) {
   function bookSearchedRecipe(e) {
     const att = e.target.closest(".preview").getAttribute("id");
     props.setAtt(att);
-    // console.log(att);
   }
 
   return (

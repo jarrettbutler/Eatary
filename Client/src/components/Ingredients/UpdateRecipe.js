@@ -203,18 +203,6 @@ const UpdateRecipe = (props) => {
       });
       if (!response.ok) {
         props.showErMessage()
-        console.log({
-          id: recipeData.id,
-          userGenerated,
-          title,
-          publisher,
-          sourceUrl,
-          image,
-          servings,
-          cookingTime,
-          ingredients,
-        });
-        console.log(response);
       } else {
         props.setShowUpdateRecipe(false);
         setEntEredTitle("");
@@ -230,7 +218,6 @@ const UpdateRecipe = (props) => {
         setEnteredIng5("");
         setEnteredIng6("");
         closeWindow();
-        props.setReRender(title);
       }
     }
   };
@@ -248,7 +235,6 @@ const UpdateRecipe = (props) => {
     if (response.ok) {
      
       props.setShowUpdateRecipe(false);
-      props.setReRender(title);
     } else {
       props.showErMessage()
       

@@ -2,10 +2,10 @@ import { useState, useEffect, useReducer } from "react";
 import "./../../styles/main.scss";
 import AddRecipe from "../AddRecipe/AddRecipe";
 import Icons from "../../img/icons.svg";
-import SingleRecipe from "../Recipe/SingleRecipe";
 import BookMark from "./BookMark";
 import Message from "../AddRecipe/Message";
 import LogoutMessage from "./LogoutMessage";
+
 const Navigation = (props) => {
   const handleContactFormClick = () => {
     window.open("/contact", "_blank");
@@ -15,11 +15,6 @@ const Navigation = (props) => {
   const [showMessage, setShowMessage] = useState(null);
   const [active, setActive] = useState(false);
   const [MessageContent, setMessageContent] = useState("");
-  // function bookSearchedRecipe(e) {
-  //   const att = e.target.closest(".preview").getAttribute("id");
-  //   props.setAtt(att);
-  //   console.log(att);
-  // }
 
   const hover = () => {
     setActive(true);
@@ -38,12 +33,9 @@ const Navigation = (props) => {
     if (response.ok) {
       setLogout(1);
       setMessageContent("You successfully logged out");
-      // document.location.replace("/");
-      //alert("You successfully logged out")
     } else {
       setShowMessage(1);
       setMessageContent('"Failed to log out');
-      alert("Failed to log out");
     }
   };
   const AddRecipeHandler = () => {
@@ -119,7 +111,6 @@ const Navigation = (props) => {
         <AddRecipe
           hide={HideAddRecipe}
           messageshown={MessageShown}
-          setReRender={props.setReRender}
         />
       ) : (
         ""

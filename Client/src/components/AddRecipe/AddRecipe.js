@@ -14,14 +14,13 @@ const AddRecipe = (props) => {
     unit: "",
     description: "",
   });
-  // const[enteredIng1, setEnteredIng1]=useState('')
 
   const [enteredIng2, setEnteredIng2] = useState({
     quantity: "",
     unit: "",
     description: "",
   });
-  // const [enteredIng2, setEnteredIng2] = useState("");
+
   const [enteredIng3, setEnteredIng3] = useState({
     quantity: "",
     unit: "",
@@ -43,10 +42,6 @@ const AddRecipe = (props) => {
     description: "",
   });
 
-  // const [enteredIng3, setEnteredIng3] = useState("");
-  // const [enteredIng4, setEnteredIng4] = useState("");
-  // const [enteredIng5, setEnteredIng5] = useState("");
-  // const [enteredIng6, setEnteredIng6] = useState("");
   const [Msg, setMsg] = useState("");
 
   const TitleHandler = (event) => {

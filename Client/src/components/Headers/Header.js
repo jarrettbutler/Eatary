@@ -5,21 +5,14 @@ import Icons from "../../img/icons.svg";
 
 const Header = (props) => {
   const [UserInput, setUserInput] = useState("");
-  // const [SearchRes, SetSearchRes] = useState([]);
-  // const [target, setTarget] = useState("");
-  // const [singleRec, setSingleRec] = useState("");
+
   useEffect(() => {
-    props.setReRender("1");
-  }, [props.reRender]);
+  }, []);
 
   const InputHandler = (e) => {
     e.preventDefault();
     setUserInput(e.target.value);
   };
-
-  // function setAttribute(att) {
-  //   props.setAtt(att);
-  // }
 
   const SearchHandler = async (e) => {
     e.preventDefault();
@@ -63,7 +56,7 @@ const Header = (props) => {
           <span>Search</span>
         </button>
       </form>
-      <Navigation setAtt={props.setAtt} setReRender={props.setReRender} />
+      <Navigation setAtt={props.setAtt}/>
     </header>
   );
 };

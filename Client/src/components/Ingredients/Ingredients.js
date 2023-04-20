@@ -13,6 +13,7 @@ const Ingredients = (props) => {
   const [addBookmark, setAddBookmark] = useState("");
   const [removeBookmark, setRemoveBookmark] = useState("hideBookmark");
  const[errorMessage, setErorMessage ]=useState() 
+
   useEffect(() => {
     bookedRecData();
     setAtt(props.attRes);
@@ -277,11 +278,7 @@ const Ingredients = (props) => {
           <UpdateRecipe
             setShowUpdateRecipe={setShowUpdateRecipe}
             recipeData={recipeData}
-
-            setReRender={props.setReRender}
-
             showErMessage={displayEror}
-
           />
         ) : (
           <></>
