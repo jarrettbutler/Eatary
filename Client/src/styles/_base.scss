@@ -46,6 +46,30 @@ body {
   background-repeat: no-repeat;
   min-height: calc(100vh - 2 * 4vw);
 }
+.video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+}
+.intro-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+.intro {
+  width: 100vw;
+  height: 100vh;
+
+}
 
 .SingUPage{
   margin-top: 0;
@@ -349,6 +373,7 @@ body {
   border: 3px solid white;
   padding: 10px;
   font-size: 1rem;
+  z-index: 10;
 }
 
 .btn-wrapper{

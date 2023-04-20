@@ -70,7 +70,6 @@ const SignUp = (props) => {
 
       if (response.ok) {
         document.location.replace("/home");
-        console.log(response);
       } else {
           setShowMessage(1);
           setMessageContent('Failed to login')
