@@ -1,12 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { emailValidator } from "../../helpers/regexValidator";
 import "./../../styles/main.scss";
+import Message from "./Message"
 
 const SignIn = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [enteredPassword, setEnteredPassword] = useState("");
-
+  const [showMessage, setShowMessage] = useState(null);
+  const [MessageContent, setMessageContent]=useState('')
   const [passwordIsValid, setPasswordIsValid] = useState(true);
 
   //E-mail validation
@@ -29,7 +31,6 @@ const SignIn = (props) => {
   }
 
   //Change page to SignUP
-
   function signUpHandler(e) {
     e.preventDefault();
     document.location.replace("/signup");
@@ -56,11 +57,17 @@ const SignIn = (props) => {
         document.location.replace("/home");
         console.log(response);
       } else {
-        alert("Email or Password is incorrect");
+        setShowMessage(1);
+        setMessageContent('Email or Password is incorrect')
       }
     } else {
-      alert("Please check input fields again");
+      setShowMessage(1);
+      setMessageContent('Please check input fields again')
     }
+  };
+
+  const HideMessage = () => {
+    setShowMessage(null);
   };
 
   return (
@@ -98,6 +105,7 @@ const SignIn = (props) => {
           SignUp
         </button>
       </form>
+      {showMessage ? <Message hideM={HideMessage} messageContent={MessageContent}/> : ""}
     </Fragment>
   );
 };

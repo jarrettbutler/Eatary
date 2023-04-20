@@ -5,6 +5,6 @@ function PageSignUp() {
   <div className="SingUPage">
   <SignUp />;
   </div>)
-}
+};
 
 export default PageSignUp;

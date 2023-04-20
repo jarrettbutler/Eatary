@@ -5,6 +5,6 @@ function PageSignIn() {
   <div className="SingUPage">
   <SignIn />
   </div>)
-}
+};
 
 export default PageSignIn;
