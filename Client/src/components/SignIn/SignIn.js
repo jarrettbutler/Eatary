@@ -55,7 +55,6 @@ const SignIn = (props) => {
 
       if (response.ok) {
         document.location.replace("/home");
-        console.log(response);
       } else {
         setShowMessage(1);
         setMessageContent('Email or Password is incorrect')

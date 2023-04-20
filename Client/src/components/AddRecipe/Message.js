@@ -10,12 +10,12 @@ const Message = (props) => {
   return (
     <Fragment>
       <div className="overlay "></div>
-      <div className="add-recipe-window ">
+      <div className="pop-up-window">
         <button onClick={closeWindow} className="btn--close-modal">
           &times;
         </button>
         <div className="Message">
-          <h2>{props.messageContent}</h2>
+          <h2 className="pop-up-window--h2">{props.messageContent}</h2>
           <button className="btn upload__btn" onClick={closeWindow}>
             <span>Ok</span>
           </button>
