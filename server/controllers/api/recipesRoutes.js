@@ -79,17 +79,18 @@ router.delete("/", withAuth, async (req, res) => {
 
 // UPDATE user generated Recipe
 
-router.put("/", (req, res) => {
-  Recipes.update(req.body, {
-    where: {
-      id: req.body.id,
-      user_id: req.session.user_id,
-    },
-  })
-    .then((updateRecipe) => {
-      res.json(updateRecipe);
-    })
-    .catch((err) => res.json(err));
+router.put("/", async (req, res) => {
+  try {
+    const updatedUserRecipe = await Recipes.update(req.body, {
+      where: {
+        id: req.body.id,
+        userId: req.session.user_id,
+      },
+    });
+    res.status(200).json(updatedUserRecipe);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 module.exports = router;
