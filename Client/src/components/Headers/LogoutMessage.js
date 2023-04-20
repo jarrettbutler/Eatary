@@ -2,8 +2,9 @@ import React, { Fragment, useState } from "react";
 import "./../../styles/main.scss";
 import Icons from "../../img/icons.svg";
 
-const Message = (props) => {
+const LogoutMessage = (props) => {
   const closeWindow = () => {
+    document.location.replace("/");
     props.hideM();
   };
 
@@ -24,4 +25,4 @@ const Message = (props) => {
     </Fragment>
   );
 };
-export default Message;
+export default LogoutMessage;
