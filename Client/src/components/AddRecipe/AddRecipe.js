@@ -124,21 +124,6 @@ const AddRecipe = (props) => {
     setEnteredIng6({ ...enteredIng6, description: event.target.value });
   };
 
-  // const Ingredient2Handler = (event) => {
-  //   setEnteredIng2(event.target.value);
-  // };
-  // const Ingredient3Handler = (event) => {
-  //   setEnteredIng3(event.target.value);
-  // };
-  // const Ingredient4Handler = (event) => {
-  //   setEnteredIng4(event.target.value);
-  // };
-  // const Ingredient5Handler = (event) => {
-  //   setEnteredIng5(event.target.value);
-  // };
-  // const Ingredient6Handler = (event) => {
-  //   setEnteredIng6(event.target.value);
-  // };
   const UploadHandler = async (event) => {
     event.preventDefault();
 

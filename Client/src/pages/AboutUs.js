@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import "./../styles/main.scss";
 import video from "../img/bbq-124830.mp4"
 

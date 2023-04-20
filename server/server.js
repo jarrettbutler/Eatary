@@ -4,7 +4,7 @@ const session = require("express-session");
 const routes = require("./controllers");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-//TODO: Uncomment to make use of database, once set up
+//To make use of database, once set up
 const sequelize = require("./config/connection");
 
 const app = express();
@@ -34,7 +34,7 @@ app.use(express.static("public"));
 //Look at /controllers folder
 app.use("/", routes);
 
-//TODO: Uncomment to make use of database, once set up
+//To make use of database, once set up
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`Server is listening at http://localhost:${PORT}`);

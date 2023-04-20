@@ -74,14 +74,13 @@ const Ingredients = (props) => {
     } else {
     setErorMessage()
     setMesssageContent("Error please try again")
-     
     }
   };
 
   const updatedServings = async function (newServings) {
     const ingredients = recipeData.ingredients;
     let newIngredients = [];
-    console.log(ingredients);
+
 
     ingredients.map((ing) => {
       newIngredients.push({
@@ -100,9 +99,6 @@ const Ingredients = (props) => {
       servings: newServings,
       ingredients: newIngredients,
     });
-
-    console.log(recipeData);
-    console.log(newIngredients);
   };
 
   const increaseServings = async function (e) {
@@ -128,7 +124,7 @@ const Ingredients = (props) => {
   const getUpdateWindow = () => {
     setShowUpdateRecipe(true);
   };
-  const [showMessage, setShowMessage] = useState(null);
+
   const displayEror = () => {
     setErorMessage(1)
     setMesssageContent("Error occured")
